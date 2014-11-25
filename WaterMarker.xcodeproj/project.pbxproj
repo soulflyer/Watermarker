@@ -12,6 +12,8 @@
 		AE0E22E71A2463BD008353E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE0E22E61A2463BD008353E6 /* Images.xcassets */; };
 		AE0E22EA1A2463BD008353E6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE0E22E81A2463BD008353E6 /* MainMenu.xib */; };
 		AE0E22F61A2463BD008353E6 /* WaterMarkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0E22F51A2463BD008353E6 /* WaterMarkerTests.m */; };
+		AE0E23001A2463CF008353E6 /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE0E22FF1A2463CF008353E6 /* AppleScriptObjC.framework */; };
+		AE0E23021A246EDC008353E6 /* IWWriteIPTC.applescript in Sources */ = {isa = PBXBuildFile; fileRef = AE0E23011A246EDC008353E6 /* IWWriteIPTC.applescript */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,8 @@
 		AE0E22EF1A2463BD008353E6 /* WaterMarkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WaterMarkerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE0E22F41A2463BD008353E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE0E22F51A2463BD008353E6 /* WaterMarkerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterMarkerTests.m; sourceTree = "<group>"; };
+		AE0E22FF1A2463CF008353E6 /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = System/Library/Frameworks/AppleScriptObjC.framework; sourceTree = SDKROOT; };
+		AE0E23011A246EDC008353E6 /* IWWriteIPTC.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = IWWriteIPTC.applescript; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE0E23001A2463CF008353E6 /* AppleScriptObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +63,7 @@
 		AE0E22D31A2463BD008353E6 = {
 			isa = PBXGroup;
 			children = (
+				AE0E22FF1A2463CF008353E6 /* AppleScriptObjC.framework */,
 				AE0E22DE1A2463BD008353E6 /* WaterMarker */,
 				AE0E22F21A2463BD008353E6 /* WaterMarkerTests */,
 				AE0E22DD1A2463BD008353E6 /* Products */,
@@ -90,6 +96,7 @@
 			children = (
 				AE0E22E01A2463BD008353E6 /* Info.plist */,
 				AE0E22E41A2463BD008353E6 /* main.m */,
+				AE0E23011A246EDC008353E6 /* IWWriteIPTC.applescript */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -210,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE0E23021A246EDC008353E6 /* IWWriteIPTC.applescript in Sources */,
 				AE0E22E51A2463BD008353E6 /* main.m in Sources */,
 				AE0E22E31A2463BD008353E6 /* AppDelegate.m in Sources */,
 			);
