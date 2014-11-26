@@ -1,0 +1,5 @@
+watermarker generates watermark codes and writes them to the IPTC field "SpecialInstructions"
+
+IWGetPhotos gets the list of photos from the Aperture selection
+
+IWWriteIPTC writes info to an IPTC field of the given photo
