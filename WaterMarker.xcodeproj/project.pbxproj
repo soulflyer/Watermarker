@@ -19,6 +19,7 @@
 		AE0E23071A258DF6008353E6 /* IWGetDatabase.applescript in Sources */ = {isa = PBXBuildFile; fileRef = AE0E23061A258DF6008353E6 /* IWGetDatabase.applescript */; };
 		AE0E23091A259EE9008353E6 /* IWApertureAccess.applescript in Resources */ = {isa = PBXBuildFile; fileRef = AE0E23081A259EE9008353E6 /* IWApertureAccess.applescript */; };
 		AE0E230A1A259F1E008353E6 /* IWApertureAccess.applescript in Sources */ = {isa = PBXBuildFile; fileRef = AE0E23081A259EE9008353E6 /* IWApertureAccess.applescript */; };
+		AE0E230C1A25DA42008353E6 /* README in Resources */ = {isa = PBXBuildFile; fileRef = AE0E230B1A25DA42008353E6 /* README */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		AE0E23031A24881C008353E6 /* IWGetPhotos.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = IWGetPhotos.applescript; sourceTree = "<group>"; };
 		AE0E23061A258DF6008353E6 /* IWGetDatabase.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = IWGetDatabase.applescript; sourceTree = "<group>"; };
 		AE0E23081A259EE9008353E6 /* IWApertureAccess.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = IWApertureAccess.applescript; sourceTree = "<group>"; };
+		AE0E230B1A25DA42008353E6 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		AE0E22DF1A2463BD008353E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AE0E230B1A25DA42008353E6 /* README */,
 				AE0E22E01A2463BD008353E6 /* Info.plist */,
 				AE0E22E41A2463BD008353E6 /* main.m */,
 				AE0E23011A246EDC008353E6 /* IWWriteIPTC.applescript */,
@@ -209,6 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE0E230C1A25DA42008353E6 /* README in Resources */,
 				AE0E23041A24881C008353E6 /* IWGetPhotos.applescript in Resources */,
 				AE0E22E71A2463BD008353E6 /* Images.xcassets in Resources */,
 				AE0E23091A259EE9008353E6 /* IWApertureAccess.applescript in Resources */,

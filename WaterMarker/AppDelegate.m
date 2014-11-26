@@ -14,6 +14,7 @@
 -(NSString *) getDatabase;
 -(NSArray *) getSelectedPhotos;
 -(NSString *) writeIPTC:(NSString*)iptcData toField:(NSString*)iptcField ofPic:(NSString*)thePic ofProject:(NSString*)theProject ofMonth:(NSString*)theMonth ofYear:(NSString*)theYear;
+-(NSString *) getPreviewOf:(NSString*)thePic ofProject:(NSString*)theProject ofMonth:(NSString*)theMonth ofYear:(NSString*)theYear;
 @end
 
 @interface AppDelegate ()
@@ -29,8 +30,14 @@
   NSLog(@"%@",dataBasePath);
   NSArray *result2=[Aperture getSelectedPhotos];
   NSLog(@"%@",result2);
-  NSString *firstname=[result2[0] objectForKey:@"master"];
-  NSLog(@"%@",firstname);
+  NSString *firstname    = [result2[0] objectForKey:@"name"];
+  NSString *firstYear    = [result2[0] objectForKey:@"year"];
+  NSString *firstMonth   = [result2[0] objectForKey:@"month"];
+  NSString *firstProject = [result2[0] objectForKey:@"project"];
+  NSString *previewPath  = [Aperture getPreviewOf:firstname ofProject:firstProject ofMonth:firstMonth ofYear:firstYear];
+  
+  NSLog(@"%@",previewPath);
+  
   
   //IWGetPhotos *IWGetPhotosInstance = [[NSClassFromString(@"IWGetPhotos") alloc] init ];
   //NSArray *result2=[IWGetPhotosInstance getPhotos];
