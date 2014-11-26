@@ -38,16 +38,10 @@
   
   NSLog(@"%@",previewPath);
   
-  
-  //IWGetPhotos *IWGetPhotosInstance = [[NSClassFromString(@"IWGetPhotos") alloc] init ];
-  //NSArray *result2=[IWGetPhotosInstance getPhotos];
-  //NSLog(@"%@",result2);
-  //NSLog(@"%@",result2[0]);
-
-  
   //IWWriteIPTC *IWWriteIPTCInstance = [[NSClassFromString(@"IWWriteIPTC") alloc] init ];
-  //NSString *result=[IWWriteIPTCInstance writeIPTC:@"BL66S15X1Y2" toField:@"SpecialInstructions" ofPic:@"DIW_0035" ofProject:@"04-Marshall" ofMonth:@"June" ofYear:@"2007"];
-  //NSLog(@"%@",result);
+  
+  NSString *result=[Aperture writeIPTC:@"BL66S15X1Y2" toField:@"SpecialInstructions" ofPic:firstname ofProject:firstProject ofMonth:firstMonth ofYear:firstYear];
+  NSLog(@"%@",result);
   
 }
 

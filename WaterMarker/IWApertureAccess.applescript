@@ -52,6 +52,7 @@ script IWApertureAccess
 		set thePic to thePic as text
 		set theProject to theProject as text
 		set theMonth to theMonth as text
+		set theMonth to my monthToString(theMonth)
 		set theYear to theYear as text
 		tell application "Aperture"
 			tell folder theYear
@@ -82,5 +83,11 @@ script IWApertureAccess
 			return "Can't_find_" & thePic
 		end try
 	end getPreviewOf:ofProject:ofMonth:ofYear:
+	
+	on monthToString(monthint)
+		set theDate to current date
+		set month of theDate to monthint
+		return month of theDate as text
+	end monthToString
 	
 end script
