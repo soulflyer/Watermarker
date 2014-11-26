@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 @class IWWriteIPTC;
 @class IWGetPhotos;
+@class IWGetDatabase;
 
 @interface IWWriteIPTC : NSObject
 -(NSString *) writeIPTC:(NSString*)iptcData toField:(NSString*)iptcField ofPic:(NSString*)thePic ofProject:(NSString*)theProject ofMonth:(NSString*)theMonth ofYear:(NSString*)theYear;
@@ -16,6 +17,10 @@
 
 @interface IWGetPhotos : NSObject
 -(NSArray *) getPhotos;
+@end
+
+@interface IWGetDatabase : NSObject
+-(NSString *) getDatabase;
 @end
 
 @interface AppDelegate ()
@@ -26,11 +31,14 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+  IWGetDatabase *IWGetDatabaseInstance = [[NSClassFromString(@"IWGetDatabase") alloc] init];
+  NSString *dataBasePath = [IWGetDatabaseInstance getDatabase];
+  NSLog(@"%@",dataBasePath);
   
-  IWGetPhotos *IWGetPhotosInstance = [[NSClassFromString(@"IWGetPhotos") alloc] init ];
-  NSArray *result2=[IWGetPhotosInstance getPhotos];
+  //IWGetPhotos *IWGetPhotosInstance = [[NSClassFromString(@"IWGetPhotos") alloc] init ];
+  //NSArray *result2=[IWGetPhotosInstance getPhotos];
   //NSLog(@"%@",result2);
-  NSLog(@"%@",result2[0]);
+  //NSLog(@"%@",result2[0]);
 
   
   //IWWriteIPTC *IWWriteIPTCInstance = [[NSClassFromString(@"IWWriteIPTC") alloc] init ];

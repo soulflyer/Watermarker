@@ -16,6 +16,7 @@
 		AE0E23021A246EDC008353E6 /* IWWriteIPTC.applescript in Sources */ = {isa = PBXBuildFile; fileRef = AE0E23011A246EDC008353E6 /* IWWriteIPTC.applescript */; };
 		AE0E23041A24881C008353E6 /* IWGetPhotos.applescript in Resources */ = {isa = PBXBuildFile; fileRef = AE0E23031A24881C008353E6 /* IWGetPhotos.applescript */; };
 		AE0E23051A249087008353E6 /* IWGetPhotos.applescript in Sources */ = {isa = PBXBuildFile; fileRef = AE0E23031A24881C008353E6 /* IWGetPhotos.applescript */; };
+		AE0E23071A258DF6008353E6 /* IWGetDatabase.applescript in Sources */ = {isa = PBXBuildFile; fileRef = AE0E23061A258DF6008353E6 /* IWGetDatabase.applescript */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		AE0E22FF1A2463CF008353E6 /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = System/Library/Frameworks/AppleScriptObjC.framework; sourceTree = SDKROOT; };
 		AE0E23011A246EDC008353E6 /* IWWriteIPTC.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = IWWriteIPTC.applescript; sourceTree = "<group>"; };
 		AE0E23031A24881C008353E6 /* IWGetPhotos.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = IWGetPhotos.applescript; sourceTree = "<group>"; };
+		AE0E23061A258DF6008353E6 /* IWGetDatabase.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = IWGetDatabase.applescript; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				AE0E22E41A2463BD008353E6 /* main.m */,
 				AE0E23011A246EDC008353E6 /* IWWriteIPTC.applescript */,
 				AE0E23031A24881C008353E6 /* IWGetPhotos.applescript */,
+				AE0E23061A258DF6008353E6 /* IWGetDatabase.applescript */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			files = (
 				AE0E23051A249087008353E6 /* IWGetPhotos.applescript in Sources */,
 				AE0E23021A246EDC008353E6 /* IWWriteIPTC.applescript in Sources */,
+				AE0E23071A258DF6008353E6 /* IWGetDatabase.applescript in Sources */,
 				AE0E22E51A2463BD008353E6 /* main.m in Sources */,
 				AE0E22E31A2463BD008353E6 /* AppDelegate.m in Sources */,
 			);

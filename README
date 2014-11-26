@@ -3,3 +3,7 @@ watermarker generates watermark codes and writes them to the IPTC field "Special
 IWGetPhotos gets the list of photos from the Aperture selection
 
 IWWriteIPTC writes info to an IPTC field of the given photo
+
+IWGetPreview should return the path to the aperture preview
+
+IWgetDatabase should return the path to apertures current database
