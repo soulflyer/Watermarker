@@ -7,20 +7,13 @@
 //
 
 #import "AppDelegate.h"
-@class IWWriteIPTC;
-@class IWGetPhotos;
-@class IWGetDatabase;
+@class IWApertureAccess;
 
-@interface IWWriteIPTC : NSObject
--(NSString *) writeIPTC:(NSString*)iptcData toField:(NSString*)iptcField ofPic:(NSString*)thePic ofProject:(NSString*)theProject ofMonth:(NSString*)theMonth ofYear:(NSString*)theYear;
-@end
-
-@interface IWGetPhotos : NSObject
--(NSArray *) getPhotos;
-@end
-
-@interface IWGetDatabase : NSObject
+@interface IWApertureAccess : NSObject
+-(NSString *) getLibrary;
 -(NSString *) getDatabase;
+-(NSArray *) getSelectedPhotos;
+-(NSString *) writeIPTC:(NSString*)iptcData toField:(NSString*)iptcField ofPic:(NSString*)thePic ofProject:(NSString*)theProject ofMonth:(NSString*)theMonth ofYear:(NSString*)theYear;
 @end
 
 @interface AppDelegate ()
@@ -31,8 +24,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-  IWGetDatabase *IWGetDatabaseInstance = [[NSClassFromString(@"IWGetDatabase") alloc] init];
-  NSString *dataBasePath = [IWGetDatabaseInstance getDatabase];
+  IWApertureAccess *ApertureAccess = [[NSClassFromString(@"IWApertureAccess") alloc] init];
+  NSString *dataBasePath = [ApertureAccess getDatabase];
   NSLog(@"%@",dataBasePath);
   
   //IWGetPhotos *IWGetPhotosInstance = [[NSClassFromString(@"IWGetPhotos") alloc] init ];

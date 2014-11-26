@@ -17,6 +17,8 @@
 		AE0E23041A24881C008353E6 /* IWGetPhotos.applescript in Resources */ = {isa = PBXBuildFile; fileRef = AE0E23031A24881C008353E6 /* IWGetPhotos.applescript */; };
 		AE0E23051A249087008353E6 /* IWGetPhotos.applescript in Sources */ = {isa = PBXBuildFile; fileRef = AE0E23031A24881C008353E6 /* IWGetPhotos.applescript */; };
 		AE0E23071A258DF6008353E6 /* IWGetDatabase.applescript in Sources */ = {isa = PBXBuildFile; fileRef = AE0E23061A258DF6008353E6 /* IWGetDatabase.applescript */; };
+		AE0E23091A259EE9008353E6 /* IWApertureAccess.applescript in Resources */ = {isa = PBXBuildFile; fileRef = AE0E23081A259EE9008353E6 /* IWApertureAccess.applescript */; };
+		AE0E230A1A259F1E008353E6 /* IWApertureAccess.applescript in Sources */ = {isa = PBXBuildFile; fileRef = AE0E23081A259EE9008353E6 /* IWApertureAccess.applescript */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,7 @@
 		AE0E23011A246EDC008353E6 /* IWWriteIPTC.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = IWWriteIPTC.applescript; sourceTree = "<group>"; };
 		AE0E23031A24881C008353E6 /* IWGetPhotos.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = IWGetPhotos.applescript; sourceTree = "<group>"; };
 		AE0E23061A258DF6008353E6 /* IWGetDatabase.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = IWGetDatabase.applescript; sourceTree = "<group>"; };
+		AE0E23081A259EE9008353E6 /* IWApertureAccess.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = IWApertureAccess.applescript; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,7 @@
 			children = (
 				AE0E22E11A2463BD008353E6 /* AppDelegate.h */,
 				AE0E22E21A2463BD008353E6 /* AppDelegate.m */,
+				AE0E23081A259EE9008353E6 /* IWApertureAccess.applescript */,
 				AE0E22E61A2463BD008353E6 /* Images.xcassets */,
 				AE0E22E81A2463BD008353E6 /* MainMenu.xib */,
 				AE0E22DF1A2463BD008353E6 /* Supporting Files */,
@@ -207,6 +211,7 @@
 			files = (
 				AE0E23041A24881C008353E6 /* IWGetPhotos.applescript in Resources */,
 				AE0E22E71A2463BD008353E6 /* Images.xcassets in Resources */,
+				AE0E23091A259EE9008353E6 /* IWApertureAccess.applescript in Resources */,
 				AE0E22EA1A2463BD008353E6 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE0E230A1A259F1E008353E6 /* IWApertureAccess.applescript in Sources */,
 				AE0E23051A249087008353E6 /* IWGetPhotos.applescript in Sources */,
 				AE0E23021A246EDC008353E6 /* IWWriteIPTC.applescript in Sources */,
 				AE0E23071A258DF6008353E6 /* IWGetDatabase.applescript in Sources */,

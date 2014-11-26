@@ -1,6 +1,5 @@
 script IWWriteIPTC
-	property parent : class "NSObject"
-	
+	property parent : class "NSObject"	
 	on writeIPTC:iptcData toField:iptcField ofPic:thePic ofProject:theProject ofMonth:theMonth ofYear:theYear
 		set iptcData to iptcData as text
 		set iptcField to iptcField as text
@@ -23,5 +22,4 @@ script IWWriteIPTC
 		end tell
 		return "Wrote " & iptcData & " to " & iptcField & " of " & theYear & "/" & theMonth & "/" & theProject & "/" & thePic
 	end writeIPTC:toField:ofPic:ofProject:ofMonth:ofYear:
-	
 end script

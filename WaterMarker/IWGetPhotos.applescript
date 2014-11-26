@@ -1,6 +1,5 @@
 script IWGetPhotos
-	property parent : class "NSObject"
-	
+	property parent : class "NSObject"	
 	on getPhotos()
 		--log "hi"
 		tell application "Aperture"
@@ -8,13 +7,6 @@ script IWGetPhotos
 			set theList to {}
 			repeat with sel in cursel
 				tell sel
-					--Use this to return the full path including the version name
-					--set theName to value of other tag "MasterLocation" & " > " & value of other tag "FileName"
-					
-					--use this to return the full path including the master name
-					--set thePicDetails to value of other tag "MasterLocation" & " > " & name
-					
-					--use this to return "Year Month Projectname file"
 					set theProject to value of other tag "MasterProject"
 					set theProjectName to name of theProject
 					set theMonth to (value of EXIF tag "CaptureMonthOfYear") as integer as string
@@ -29,6 +21,5 @@ script IWGetPhotos
 			end repeat
 		end tell
 		return theList
-	end getPhotos
-	
+	end getPhotos	
 end script
