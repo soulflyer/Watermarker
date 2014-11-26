@@ -20,6 +20,10 @@ script IWApertureAccess
 	end getDatabase
 	
 	on getSelectedPhotos()
+		-- returns an NSArray of NSDictionary
+		-- IWApertureAccess *Aperture = [[NSClassFromString(@"IWApertureAccess") alloc] init];
+		-- NSArray *photos=[Aperture getSelectedPhotos];
+		-- NSString *firstPhotoMasterName=[photos[0] objectForKey:@"master"];
 		tell application "Aperture"
 			set cursel to the selection
 			set theList to {}
@@ -33,7 +37,8 @@ script IWApertureAccess
 					end if
 					set theYear to value of EXIF tag "CaptureYear"
 					set masterName to value of other tag "FileName"
-					set thePicDetails to theYear & theMonth & theProjectName & name & masterName
+					--set thePicDetails to theYear & theMonth & theProjectName & name & masterName
+					set thePicDetails to {|year|:theYear, |month|:theMonth, |project|:theProjectName, |name|:name, master:masterName}
 				end tell
 				set end of theList to thePicDetails
 			end repeat

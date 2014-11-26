@@ -24,9 +24,13 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-  IWApertureAccess *ApertureAccess = [[NSClassFromString(@"IWApertureAccess") alloc] init];
-  NSString *dataBasePath = [ApertureAccess getDatabase];
+  IWApertureAccess *Aperture = [[NSClassFromString(@"IWApertureAccess") alloc] init];
+  NSString *dataBasePath = [Aperture getDatabase];
   NSLog(@"%@",dataBasePath);
+  NSArray *result2=[Aperture getSelectedPhotos];
+  NSLog(@"%@",result2);
+  NSString *firstname=[result2[0] objectForKey:@"master"];
+  NSLog(@"%@",firstname);
   
   //IWGetPhotos *IWGetPhotosInstance = [[NSClassFromString(@"IWGetPhotos") alloc] init ];
   //NSArray *result2=[IWGetPhotosInstance getPhotos];
