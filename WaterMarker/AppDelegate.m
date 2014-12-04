@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "IWView.h"
 @class IWApertureAccess;
 
 @interface IWApertureAccess : NSObject
@@ -38,10 +39,14 @@
   
   NSLog(@"%@",previewPath);
   
+  NSImage *image = [[NSImage alloc] initWithContentsOfFile:previewPath];
+  [theView setImage:image];
+
+  
   //IWWriteIPTC *IWWriteIPTCInstance = [[NSClassFromString(@"IWWriteIPTC") alloc] init ];
   
-  NSString *result=[Aperture writeIPTC:@"BL66S15X1Y2" toField:@"SpecialInstructions" ofPic:firstname ofProject:firstProject ofMonth:firstMonth ofYear:firstYear];
-  NSLog(@"%@",result);
+  //NSString *result=[Aperture writeIPTC:@"BL66S15X1Y2" toField:@"SpecialInstructions" ofPic:firstname ofProject:firstProject ofMonth:firstMonth ofYear:firstYear];
+  //NSLog(@"%@",result);
   
 }
 

@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class IWView;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
-
-
+@interface AppDelegate : NSObject <NSApplicationDelegate>{
+IBOutlet IWView *theView;
+}
 @end
 
