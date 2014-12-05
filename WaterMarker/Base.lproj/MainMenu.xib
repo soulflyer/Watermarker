@@ -674,7 +674,7 @@
             <rect key="contentRect" x="335" y="390" width="480" height="360"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="5" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bT5-mm-uve" customClass="IWView">
@@ -682,6 +682,7 @@
                     </customView>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="147" y="258"/>
         </window>
     </objects>
 </document>

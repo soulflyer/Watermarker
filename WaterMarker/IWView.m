@@ -17,9 +17,29 @@
   [[NSColor redColor] set];
   NSRectFill([self frame]);
   if(image){
-    [[NSColor blueColor] set];
-    NSRectFill([self frame]);
-    NSRect imageRect = [self frame];
+    NSRect theWindowRect = [[self window] frame];
+    //theWindowRect.size.width = theWindowRect.size.height * image.size.width / image.size.height;
+    theWindowRect.size.height = theWindowRect.size.width * image.size.height / image.size.width;
+    NSRect theViewRect = theWindowRect;
+    theViewRect.origin = NSZeroPoint;
+    [self setFrame:theViewRect];
+    //[[self window] setFrame:theWindowRect display:true];
+    //[[self window] setContentSize:image.size];
+    [[self window] setContentSize:theWindowRect.size];
+    
+    NSRect imageRect;
+    imageRect.origin=NSZeroPoint;
+    imageRect.size.width=[self frame].size.width;
+    //imageRect.size.height=imageRect.size.width * image.size.height / image.size.width;
+    imageRect.size.height=[self frame].size.height;
+    //NSSize imageRectSize = [image size];
+    //NSRect theWindowRect = [[self window] frame];
+    //theWindowRect.size.width = image.size.width;
+    //theWindowRect.size.height = image.size.height;
+    
+    //[[self window] setFrame:theWindowRect display:true];
+    //[self setFrame:theWindowRect];
+    //NSRect theRect = [self frame];
     [image drawInRect:imageRect];
   }
 }

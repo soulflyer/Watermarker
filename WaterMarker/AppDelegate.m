@@ -19,7 +19,7 @@
 @end
 
 @interface AppDelegate ()
-@property (weak) IBOutlet NSWindow *window;
+//@property (weak) IBOutlet NSWindow *window;
 @end
 
 @implementation AppDelegate
@@ -39,8 +39,9 @@
   
   NSLog(@"%@",previewPath);
   
-  NSImage *image = [[NSImage alloc] initWithContentsOfFile:previewPath];
-  [theView setImage:image];
+  NSImage *theImage = [[NSImage alloc] initWithContentsOfFile:previewPath];
+  [theView setImage:theImage];
+  
 
   
   //IWWriteIPTC *IWWriteIPTCInstance = [[NSClassFromString(@"IWWriteIPTC") alloc] init ];

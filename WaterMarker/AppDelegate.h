@@ -10,7 +10,8 @@
 @class IWView;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>{
-IBOutlet IWView *theView;
+  IBOutlet IWView *theView;
+  IBOutlet NSWindow *window;
 }
 @end
 
