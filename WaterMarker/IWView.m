@@ -17,29 +17,32 @@
   [[NSColor redColor] set];
   NSRectFill([self frame]);
   if(image){
+    NSRect visibleScreen = [[NSScreen mainScreen] visibleFrame];
+   
+    //Set the window to the right proportions
     NSRect theWindowRect = [[self window] frame];
     //theWindowRect.size.width = theWindowRect.size.height * image.size.width / image.size.height;
     theWindowRect.size.height = theWindowRect.size.width * image.size.height / image.size.width;
+    if(theWindowRect.size.height > visibleScreen.size.height){
+      theWindowRect.size.height=visibleScreen.size.height;
+      theWindowRect.size.width=theWindowRect.size.height * image.size.width / image.size.height;
+    }
+    if(theWindowRect.size.width > visibleScreen.size.width){
+      theWindowRect.size.width = visibleScreen.size.width;
+      theWindowRect.size.height = theWindowRect.size.width * image.size.height / image.size.width;
+    }
+    
+    [[self window] setContentSize:theWindowRect.size];
+
+    //Set the view to match the available space
     NSRect theViewRect = theWindowRect;
     theViewRect.origin = NSZeroPoint;
     [self setFrame:theViewRect];
-    //[[self window] setFrame:theWindowRect display:true];
-    //[[self window] setContentSize:image.size];
-    [[self window] setContentSize:theWindowRect.size];
     
+    //Draw the image to the view
     NSRect imageRect;
     imageRect.origin=NSZeroPoint;
-    imageRect.size.width=[self frame].size.width;
-    //imageRect.size.height=imageRect.size.width * image.size.height / image.size.width;
-    imageRect.size.height=[self frame].size.height;
-    //NSSize imageRectSize = [image size];
-    //NSRect theWindowRect = [[self window] frame];
-    //theWindowRect.size.width = image.size.width;
-    //theWindowRect.size.height = image.size.height;
-    
-    //[[self window] setFrame:theWindowRect display:true];
-    //[self setFrame:theWindowRect];
-    //NSRect theRect = [self frame];
+    imageRect.size = [self frame].size;
     [image drawInRect:imageRect];
   }
 }
