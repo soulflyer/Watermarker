@@ -8,10 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 @class IWView;
+@class IWApertureAccess;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>{
   IBOutlet IWView *theView;
   IBOutlet NSWindow *window;
+  NSArray *selectedImages;
+  int imageIndex;
+  NSDictionary *selectedImage;
+  IWApertureAccess *Aperture;
 }
+- (IBAction)previousImage:(id)sender;
+- (IBAction)nextImage:(id)sender;
 @end
 
