@@ -39,7 +39,10 @@
   NSString *project = [image objectForKey:@"project"];
   NSString *imagePath = [Aperture getPreviewOf:name ofProject:project ofMonth:month ofYear:year];
   return [[NSImage alloc] initWithContentsOfFile:imagePath];
-  
+}
+
+- (NSString *)getWatermark:(NSDictionary*)image {
+  return [image objectForKey:@"watermark"];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
@@ -59,6 +62,7 @@
   
   NSImage *theImage = [[NSImage alloc] initWithContentsOfFile:previewPath];
   [theView setImage:theImage];
+  NSLog(@"Watermark: %@",[self getWatermark:selectedImage]);
   
 
   
@@ -78,6 +82,7 @@
   NSLog(@"previousImage button pressed");
   if (imageIndex > 0){
     imageIndex -= 1;
+    NSLog(@"Watermark: %@",[self getWatermark:selectedImages[imageIndex]]);
     NSImage *theImage = [self getPreviewImageOfPic:selectedImages[imageIndex]];
     [theView setImage:theImage];
     [theView setNeedsDisplay:true];
@@ -85,7 +90,7 @@
 }
 - (IBAction)nextImage:(id)sender {
   NSLog(@"nextImage button pressed");
-  if (imageIndex < selectedImages.count){
+  if (imageIndex < selectedImages.count - 1){
     imageIndex += 1;
     NSImage *theImage = [self getPreviewImageOfPic:selectedImages[imageIndex]];
     [theView setImage:theImage];

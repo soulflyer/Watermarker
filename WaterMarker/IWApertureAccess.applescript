@@ -37,8 +37,9 @@ script IWApertureAccess
 					end if
 					set theYear to value of EXIF tag "CaptureYear"
 					set masterName to value of other tag "FileName"
+          set theWaterMark to value of IPTC tag "SpecialInstructions"
 					--set thePicDetails to theYear & theMonth & theProjectName & name & masterName
-					set thePicDetails to {|year|:theYear, |month|:theMonth, |project|:theProjectName, |name|:name, master:masterName}
+          set thePicDetails to {|year|:theYear, |month|:theMonth, |project|:theProjectName, |name|:name, master:masterName, watermark:theWaterMark}
 				end tell
 				set end of theList to thePicDetails
 			end repeat
