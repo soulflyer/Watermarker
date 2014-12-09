@@ -24,14 +24,6 @@
 
 @implementation AppDelegate
 
-- (NSString *)getPreviewPathOfPic:(NSDictionary*)image {
-  NSString *name    = [image objectForKey:@"name"];
-  NSString *year    = [image objectForKey:@"year"];
-  NSString *month   = [image objectForKey:@"month"];
-  NSString *project = [image objectForKey:@"project"];
-  return [Aperture getPreviewOf:name ofProject:project ofMonth:month ofYear:year];
-}
-
 - (NSImage *)getPreviewImageOfPic:(NSDictionary*)image {
   NSString *name    = [image objectForKey:@"name"];
   NSString *year    = [image objectForKey:@"year"];
@@ -42,28 +34,27 @@
 }
 
 - (NSString *)getWatermark:(NSDictionary*)image {
-  return [image objectForKey:@"watermark"];
+  if ([image objectForKey:@"watermark"]) {
+    return [image objectForKey:@"watermark"];
+  }
+  return @"BL12S10X2Y2";
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-  //IWApertureAccess *Aperture = [[NSClassFromString(@"IWApertureAccess") alloc] init];
   Aperture = [[NSClassFromString(@"IWApertureAccess") alloc] init];
-  NSString *dataBasePath = [Aperture getDatabase];
-  NSLog(@"%@",dataBasePath);
+  //NSString *dataBasePath = [Aperture getDatabase];
+  //NSLog(@"%@",dataBasePath);
+  
+  //[theView setWatermarkFile:[NSURL URLWithString:@"/Users/iain/Pictures/Watermarks/Soulflyer2000.png"]];
+  [theView setWatermarkImage:[[NSImage alloc] initWithContentsOfFile:@"/Users/iain/Pictures/Watermarks/Soulflyer2000.png"]];
+  
   selectedImages=[Aperture getSelectedPhotos];
-  imageIndex=0;
-  selectedImage=selectedImages[imageIndex];
-  NSLog(@"%@",selectedImage);
-  NSString *previewPath;
-  previewPath = [self getPreviewPathOfPic:selectedImage];
-  
-  NSLog(@"%@",previewPath);
-  
-  NSImage *theImage = [[NSImage alloc] initWithContentsOfFile:previewPath];
+  NSImage *theImage = [self getPreviewImageOfPic:selectedImages[0]];
   [theView setImage:theImage];
-  NSLog(@"Watermark: %@",[self getWatermark:selectedImage]);
-  
+  [theView setWatermarkValues:[self getWatermark:selectedImages[0]]];
+  NSLog(@"Watermark (from image): %@",[self getWatermark:selectedImages[0]]);
+  NSLog(@"Watermark (from view): %@",[theView watermarkValues]);
 
   
   //IWWriteIPTC *IWWriteIPTCInstance = [[NSClassFromString(@"IWWriteIPTC") alloc] init ];
@@ -85,6 +76,7 @@
     NSLog(@"Watermark: %@",[self getWatermark:selectedImages[imageIndex]]);
     NSImage *theImage = [self getPreviewImageOfPic:selectedImages[imageIndex]];
     [theView setImage:theImage];
+    [theView setWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
     [theView setNeedsDisplay:true];
   }
 }
@@ -94,6 +86,7 @@
     imageIndex += 1;
     NSImage *theImage = [self getPreviewImageOfPic:selectedImages[imageIndex]];
     [theView setImage:theImage];
+    [theView setWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
     [theView setNeedsDisplay:true];
   }
 }
