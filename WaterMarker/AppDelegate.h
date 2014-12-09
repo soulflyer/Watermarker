@@ -20,5 +20,17 @@
 }
 - (IBAction)previousImage:(id)sender;
 - (IBAction)nextImage:(id)sender;
+
+-(IBAction)setBottom:(id)sender;
+-(IBAction)setTop:(id)sender;
+-(IBAction)setLeft:(id)sender;
+-(IBAction)setRight:(id)sender;
+
+-(IBAction)moveLeft:(id)sender;
+-(IBAction)moveRight:(id)sender;
+-(IBAction)moveUp:(id)sender;
+-(IBAction)moveDown:(id)sender;
+
+
 @end
 

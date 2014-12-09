@@ -52,7 +52,7 @@
   selectedImages=[Aperture getSelectedPhotos];
   NSImage *theImage = [self getPreviewImageOfPic:selectedImages[0]];
   [theView setImage:theImage];
-  [theView setWatermarkValues:[self getWatermark:selectedImages[0]]];
+  [theView initWatermarkValues:[self getWatermark:selectedImages[0]]];
   NSLog(@"Watermark (from image): %@",[self getWatermark:selectedImages[0]]);
   NSLog(@"Watermark (from view): %@",[theView watermarkValues]);
 
@@ -76,7 +76,7 @@
     NSLog(@"Watermark: %@",[self getWatermark:selectedImages[imageIndex]]);
     NSImage *theImage = [self getPreviewImageOfPic:selectedImages[imageIndex]];
     [theView setImage:theImage];
-    [theView setWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
+    [theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
     [theView setNeedsDisplay:true];
   }
 }
@@ -86,8 +86,114 @@
     imageIndex += 1;
     NSImage *theImage = [self getPreviewImageOfPic:selectedImages[imageIndex]];
     [theView setImage:theImage];
-    [theView setWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
+    [theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
     [theView setNeedsDisplay:true];
+  }
+}
+
+-(IBAction)setBottom:(id)sender{
+  [theView setBottom:YES];
+}
+
+-(IBAction)setTop:(id)sender{
+  [theView setBottom:NO];
+}
+
+-(IBAction)setRight:(id)sender{
+  [theView setRight:YES];
+}
+
+-(IBAction)setLeft:(id)sender{
+  [theView setRight:NO];
+}
+
+-(void)incY{
+  if([theView yOffsetPercent]<50){
+    [theView setYOffsetPercent:[theView yOffsetPercent]+1];
+  }
+}
+
+
+-(void)decY{
+  if([theView yOffsetPercent]>0){
+    [theView setYOffsetPercent:[theView yOffsetPercent]-1];
+  }
+  
+}
+
+-(void)decX{
+  if([theView xOffsetPercent]>0){
+    [theView setXOffsetPercent:[theView xOffsetPercent]-1];
+  }
+}
+
+-(void)incX{
+  if([theView xOffsetPercent]<50){
+    [theView setXOffsetPercent:[theView xOffsetPercent]+1];
+  }
+}
+
+-(IBAction)moveLeft:(id)sender{
+  if([theView right]){
+    [self incX];
+  }else{
+    [self decX];
+  }
+}
+
+-(IBAction)moveRight:(id)sender{
+  if([theView right]){
+    [self decX];
+  }else{
+    [self incX];
+  }
+}
+
+-(IBAction)moveUp:(id)sender{
+  if([theView bottom]){
+    [self incY];
+  }else{
+    [self decY];
+  }
+}
+
+-(IBAction)moveDown:(id)sender{
+  if([theView bottom]){
+    [self decY];
+  }else{
+    [self incY];
+  }
+}
+
+-(IBAction)incOpacity:(id)sender{
+  if([theView opacityPercent]<100){
+    [theView setOpacityPercent:[theView opacityPercent]+1];
+  }
+}
+
+-(IBAction)decOpacity:(id)sender{
+  if([theView opacityPercent]>0){
+    [theView setOpacityPercent:[theView opacityPercent]-1];
+  }
+}
+
+-(IBAction)incSize:(id)sender{
+  if([theView widthPercent]<50){
+    [theView setWidthPercent:[theView widthPercent]+1];
+  }
+}
+
+-(IBAction)decSize:(id)sender{
+  if([theView widthPercent]>5){
+    [theView setWidthPercent:[theView widthPercent]-1];
+  }
+}
+
+-(IBAction)toggleVisibility:(id)sender{
+  if([theView toolsVisible]){
+    [theView setToolsVisible:NO];
+  }else{
+    [theView setToolsVisible:YES];
   }
 }
 @end

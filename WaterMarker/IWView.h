@@ -10,11 +10,17 @@
 
 @interface IWView : NSView{
   NSImage *image;
+  Boolean bottom;
+  Boolean right;
+  int opacityPercent;
+  int widthPercent;
+  int xOffsetPercent;
+  int yOffsetPercent;
 }
--(void)setWatermarkValues:(NSString*) watermarkString;
--(NSString*)watermarkValues;
+-(void)initWatermarkValues:(NSString*) watermarkString;
+@property (strong) NSString *watermarkValues;
 @property (strong) NSImage *image;
-@property (strong) NSString *code;
+//@property (strong) NSString *code;
 @property (assign) int corner;
 @property (assign) Boolean bottom;
 @property (assign) Boolean right;
@@ -26,4 +32,5 @@
 @property (assign) float opacity;
 @property (strong) NSImage *watermarkImage;
 @property (strong) NSURL *watermarkFile;
+@property (assign) Boolean toolsVisible;
 @end

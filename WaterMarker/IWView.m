@@ -80,7 +80,7 @@
   [self setNeedsDisplay:YES];
 }
 
--(void)setWatermarkValues:(NSString*)watermarkString{
+-(void)initWatermarkValues:(NSString*)watermarkString{
   if([watermarkString isEqualTo:@""]){
     watermarkString=@"BL12S10X1Y1";
   }
@@ -124,5 +124,73 @@
   }
   return [NSString stringWithFormat:@"%@%@%dS%dX%dY%d",upDown,leftRight,[self opacityPercent ],[self widthPercent ],[self xOffsetPercent ],[self yOffsetPercent ]];
 }
+
+-(void)setWatermarkValues:(NSString *)dummy{
+  
+}
+
+
+-(int)opacityPercent{
+  return opacityPercent;
+}
+
+-(void)setOpacityPercent:(int)newOpacityPercent{
+  opacityPercent=newOpacityPercent;
+  [self setWatermarkValues:@""];
+  [self setNeedsDisplay:YES];
+}
+
+
+-(int)widthPercent{
+  return widthPercent;
+}
+
+-(void)setWidthPercent:(int)newWidthPercent{
+  widthPercent=newWidthPercent;
+  [self setWatermarkValues:@""];
+  [self setNeedsDisplay:YES];
+}
+
+-(int)xOffsetPercent{
+  return xOffsetPercent;
+}
+
+-(void)setXOffsetPercent:(int)newXOffsetPercent{
+  xOffsetPercent=newXOffsetPercent;
+  [self setWatermarkValues:@""];
+  [self setNeedsDisplay:YES];
+}
+
+-(int)yOffsetPercent{
+  return yOffsetPercent;
+}
+
+-(void)setYOffsetPercent:(int)newYOffsetPercent{
+  yOffsetPercent=newYOffsetPercent;
+  [self setWatermarkValues:@""];
+  [self setNeedsDisplay:YES];
+}
+
+
+-(Boolean)bottom{
+  return bottom;
+}
+
+-(void)setBottom:(Boolean)newBottom{
+  bottom=newBottom;
+  [self setWatermarkValues:@""];
+  [self setNeedsDisplay:YES];
+}
+
+-(Boolean)right{
+  return right;
+}
+
+-(void)setRight:(Boolean)newRight{
+  right=newRight;
+  [self setWatermarkValues:@""];
+  [self setNeedsDisplay:YES];
+}
+
 
 @end
