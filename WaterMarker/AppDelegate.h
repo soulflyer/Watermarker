@@ -20,6 +20,7 @@
 }
 - (IBAction)previousImage:(id)sender;
 - (IBAction)nextImage:(id)sender;
+- (IBAction)saveToAperture:(id)sender;
 
 -(IBAction)setBottom:(id)sender;
 -(IBAction)setTop:(id)sender;
@@ -30,7 +31,7 @@
 -(IBAction)moveRight:(id)sender;
 -(IBAction)moveUp:(id)sender;
 -(IBAction)moveDown:(id)sender;
-
+-(IBAction)toggleVisibility:(id)sender;
 
 @end
 

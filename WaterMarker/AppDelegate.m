@@ -41,21 +41,15 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
   Aperture = [[NSClassFromString(@"IWApertureAccess") alloc] init];
   //NSString *dataBasePath = [Aperture getDatabase];
-  //NSLog(@"%@",dataBasePath);
   
-  //[theView setWatermarkFile:[NSURL URLWithString:@"/Users/iain/Pictures/Watermarks/Soulflyer2000.png"]];
   [theView setWatermarkImage:[[NSImage alloc] initWithContentsOfFile:@"/Users/iain/Pictures/Watermarks/Soulflyer2000.png"]];
   
   selectedImages=[Aperture getSelectedPhotos];
   NSImage *theImage = [self getPreviewImageOfPic:selectedImages[0]];
   [theView setImage:theImage];
   [theView initWatermarkValues:[self getWatermark:selectedImages[0]]];
-  NSLog(@"Watermark (from image): %@",[self getWatermark:selectedImages[0]]);
-  NSLog(@"Watermark (from view): %@",[theView watermarkValues]);
-
   
   //IWWriteIPTC *IWWriteIPTCInstance = [[NSClassFromString(@"IWWriteIPTC") alloc] init ];
   
@@ -70,18 +64,16 @@
 
 
 - (IBAction)previousImage:(id)sender {
-  NSLog(@"previousImage button pressed");
   if (imageIndex > 0){
     imageIndex -= 1;
-    NSLog(@"Watermark: %@",[self getWatermark:selectedImages[imageIndex]]);
     NSImage *theImage = [self getPreviewImageOfPic:selectedImages[imageIndex]];
     [theView setImage:theImage];
     [theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
     [theView setNeedsDisplay:true];
   }
 }
+
 - (IBAction)nextImage:(id)sender {
-  NSLog(@"nextImage button pressed");
   if (imageIndex < selectedImages.count - 1){
     imageIndex += 1;
     NSImage *theImage = [self getPreviewImageOfPic:selectedImages[imageIndex]];
@@ -89,6 +81,11 @@
     [theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
     [theView setNeedsDisplay:true];
   }
+}
+
+- (IBAction)saveToAperture:(id)sender {
+  NSLog(@"Button pressed");
+  NSLog(@"%@",[theView watermarkValues]);
 }
 
 -(IBAction)setBottom:(id)sender{

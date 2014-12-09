@@ -437,7 +437,7 @@
                             <menuItem title="Show Tools" keyEquivalent="f" id="snW-S8-Cw5">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="toggleVisibility:" target="Voe-Tx-rLC" id="4Yf-OC-olg"/>
+                                    <binding destination="Voe-Tx-rLC" name="value" keyPath="theView.toolsVisible" id="38O-Aj-dc3"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -706,13 +706,16 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="saveToAperture:" target="Voe-Tx-rLC" id="6Aq-dd-R18"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </view>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" red="0.53653617527173914" green="0.53653617527173914" blue="0.53653617527173914" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="Voe-Tx-rLC" name="hidden" keyPath="theView.toolsVisible" id="AOr-3C-0du"/>
+                                    <binding destination="Voe-Tx-rLC" name="hidden" keyPath="theView.toolsVisible" id="Ymx-Pi-kyN"/>
                                 </connections>
                             </box>
                             <button id="Op6-fB-1hB">

@@ -89,8 +89,6 @@
   if([topBottom isEqual:@"T"] || [topBottom isEqual:@"t"]){
     [self setBottom:false];
   }
-  NSLog(@"%@",topBottom);
-  NSLog(@"%i",[self bottom]);
   
   NSRange range = {1,1};
   NSString* leftRight = [watermarkString substringWithRange:range];
@@ -98,10 +96,8 @@
   if ([leftRight isEqual:@"l"] || [leftRight isEqual:@"L"]){
     [self setRight:false];
   }
-  NSLog(@"%@",leftRight);
-  NSLog(@"%i",[self right]);
+
   NSString* watermarkNumbers = [watermarkString substringFromIndex:2];
-  NSLog(@"%@",watermarkNumbers);
   NSArray *watermarkNumbersArray=[watermarkNumbers componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"SsXxYx"]];
   [self setOpacityPercent:[watermarkNumbersArray[0] intValue]];
   [self setWidthPercent:[watermarkNumbersArray[1] intValue]];
