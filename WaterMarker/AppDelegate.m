@@ -30,6 +30,14 @@
   NSString *month   = [image objectForKey:@"month"];
   NSString *project = [image objectForKey:@"project"];
   NSString *imagePath = [Aperture getPreviewOf:name ofProject:project ofMonth:month ofYear:year];
+  NSArray  *previewArray = [imagePath componentsSeparatedByString:@"\r"];
+  NSLog(@"[previewArray count]: %lu",(unsigned long)[previewArray count]);
+  if ([previewArray count] > 1){
+    NSLog(@"In getPreviewImageOfPic: %@",imagePath);
+    NSError *error = [NSError errorWithDomain:@"Multiple Previews" code:1 userInfo:nil];
+    NSAlert *alert = [NSAlert alertWithError:error];
+    [alert runModal];
+  }
   return [[NSImage alloc] initWithContentsOfFile:imagePath];
 }
 
@@ -86,6 +94,7 @@
 - (IBAction)saveToAperture:(id)sender {
   NSLog(@"Button pressed");
   NSLog(@"%@",[theView watermarkValues]);
+  [Aperture writeIPTC:[theView watermarkValues] toField:@"SpecialInstructions" ofPic:[selectedImages[imageIndex] objectForKey:@"name"] ofProject:[selectedImages[imageIndex] objectForKey:@"project"] ofMonth:[selectedImages[imageIndex] objectForKey:@"month"] ofYear:[selectedImages[imageIndex] objectForKey:@"year"]];
 }
 
 -(IBAction)setBottom:(id)sender{

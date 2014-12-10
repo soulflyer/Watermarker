@@ -705,6 +705,9 @@
                                             <buttonCell key="cell" type="squareTextured" title="save to Aperture" bezelStyle="texturedSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jsQ-hV-Ybp">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
+                                                <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="saveToAperture:" target="Voe-Tx-rLC" id="6Aq-dd-R18"/>

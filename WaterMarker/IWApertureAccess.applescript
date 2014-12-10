@@ -79,9 +79,9 @@ script IWApertureAccess
 		set thePath to my getLibrary()
 		set thePath to thePath & "/Previews/" & theYear & "/" & theMonth
 		set theScript to "find " & quoted form of thePath & " -name " & thePic & ".*"
+    log theScript
 		try
 			set result to do shell script theScript
-			--log thePath
 			return result as text
 		on error
 			return "Can't_find_" & thePic

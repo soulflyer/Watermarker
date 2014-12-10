@@ -17,6 +17,7 @@
   [[NSColor redColor] set];
   NSRectFill([self frame]);
   if(image){
+    NSLog(@"Image found");
     NSRect visibleScreen = [[NSScreen mainScreen] visibleFrame];
    
     //Set the window to the right proportions
@@ -42,6 +43,7 @@
     NSRect theViewRect = theWindowContentRect;
     theViewRect.origin = NSZeroPoint;
     [self setFrame:theViewRect];
+    NSLog(@"Atempting to draw image %@", image);
     
     //Draw the image to the view
     NSRect imageRect;
