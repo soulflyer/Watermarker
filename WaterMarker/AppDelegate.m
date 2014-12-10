@@ -34,9 +34,11 @@
   NSLog(@"[previewArray count]: %lu",(unsigned long)[previewArray count]);
   if ([previewArray count] > 1){
     NSLog(@"In getPreviewImageOfPic: %@",imagePath);
-    NSError *error = [NSError errorWithDomain:@"Multiple Previews" code:1 userInfo:nil];
+    NSDictionary *info = [NSDictionary dictionaryWithObject:@"Found multiple preview images, try changing the version name of one of the images in Aperture.\n\n Click ok to view the first preview pic found." forKey:NSLocalizedRecoverySuggestionErrorKey];
+    NSError *error = [NSError errorWithDomain:@"Find Previews" code:1 userInfo:info];
     NSAlert *alert = [NSAlert alertWithError:error];
     [alert runModal];
+    imagePath = previewArray[0];
   }
   return [[NSImage alloc] initWithContentsOfFile:imagePath];
 }
