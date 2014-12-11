@@ -22,6 +22,7 @@
 - (IBAction)nextImage:(id)sender;
 - (IBAction)saveToAperture:(id)sender;
 - (IBAction)saveAndNext:(id)sender;
+- (IBAction)openFiles:(id)sender;
 
 -(IBAction)setBottom:(id)sender;
 -(IBAction)setTop:(id)sender;
@@ -32,7 +33,8 @@
 -(IBAction)moveRight:(id)sender;
 -(IBAction)moveUp:(id)sender;
 -(IBAction)moveDown:(id)sender;
--(IBAction)toggleVisibility:(id)sender;
+//@property (assign) int imageIndex;
+@property (strong) NSString *imageCount;
 
 @end
 

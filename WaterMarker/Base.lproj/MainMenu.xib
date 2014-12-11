@@ -69,77 +69,10 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="File" id="bib-Uj-vzu">
                         <items>
-                            <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
-                                <connections>
-                                    <action selector="newDocument:" target="-1" id="4Si-XN-c54"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
-                                <connections>
-                                    <action selector="openDocument:" target="-1" id="bVn-NM-KNZ"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Open Recent" id="tXI-mr-wws">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="oas-Oc-fiZ">
-                                    <items>
-                                        <menuItem title="Clear Menu" id="vNY-rz-j42">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="clearRecentDocuments:" target="-1" id="Daa-9d-B3U"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
-                            <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
-                                <connections>
-                                    <action selector="performClose:" target="-1" id="HmO-Ls-i7Q"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
-                                <connections>
-                                    <action selector="saveDocument:" target="-1" id="teZ-XB-qJY"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Save As…" keyEquivalent="S" id="Bw7-FT-i3A">
-                                <connections>
-                                    <action selector="saveDocumentAs:" target="-1" id="mDf-zr-I0C"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Revert to Saved" id="KaW-ft-85H">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="revertDocumentToSaved:" target="-1" id="iJ3-Pv-kwq"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="aJh-i4-bef"/>
-                            <menuItem title="Page Setup…" keyEquivalent="P" id="qIS-W8-SiK">
-                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                <connections>
-                                    <action selector="runPageLayout:" target="-1" id="Din-rz-gC5"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Print…" keyEquivalent="p" id="aTl-1u-JFS">
-                                <connections>
-                                    <action selector="print:" target="-1" id="qaZ-4w-aoO"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="Edit" id="5QF-Oa-p0T">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Edit" id="W48-6f-4Dl">
-                        <items>
-                            <menuItem title="save to aperture" id="ikS-3n-Ch4">
-                                <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="saveAndNext:" target="Voe-Tx-rLC" id="qvx-3L-EKu"/>
+                                    <action selector="openFiles:" target="Voe-Tx-rLC" id="I1y-Mg-hSw"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -224,6 +157,15 @@ DQ
                                     <action selector="decOpacity:" target="Voe-Tx-rLC" id="AXp-SW-dkq"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="save to aperture" id="ikS-3n-Ch4">
+                                <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="saveAndNext:" target="Voe-Tx-rLC" id="qvx-3L-EKu"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -249,7 +191,7 @@ DQ
                                     <action selector="performMiniaturize:" target="-1" id="VwT-WD-YPe"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Zoom" keyEquivalent="z" id="R4o-n2-Eq4">
+                            <menuItem title="Zoom" alternate="YES" keyEquivalent="z" id="R4o-n2-Eq4">
                                 <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                 <connections>
                                     <action selector="performZoom:" target="-1" id="DIl-cC-cCs"/>
@@ -281,8 +223,7 @@ DQ
         </menu>
         <window title="WaterMarker" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="72" y="78" width="1024" height="800"/>
+            <rect key="contentRect" x="132" y="47" width="1024" height="800"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="1024" height="800"/>
@@ -313,8 +254,20 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button id="Op6-fB-1hB">
+                                <rect key="frame" x="840" y="0.0" width="184" height="800"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="only" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="fML-Ab-e9P">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                    <string key="keyEquivalent">n</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="nextImage:" target="Voe-Tx-rLC" id="1HA-db-PXI"/>
+                                </connections>
+                            </button>
                             <box autoresizesSubviews="NO" boxType="custom" borderType="line" titlePosition="noTitle" id="zxA-GR-yVT">
-                                <rect key="frame" x="375" y="269" width="274" height="261"/>
+                                <rect key="frame" x="348" y="270" width="274" height="261"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <view key="contentView">
                                     <rect key="frame" x="1" y="1" width="272" height="259"/>
@@ -472,16 +425,16 @@ DQ
                                                 <action selector="setBottom:" target="Voe-Tx-rLC" id="UvO-qe-nwR"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" id="SUQ-12-Bfl">
-                                            <rect key="frame" x="178" y="202" width="79" height="27"/>
+                                        <button verticalHuggingPriority="750" id="so8-qq-f8D">
+                                            <rect key="frame" x="15" y="201" width="79" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="squareTextured" title="Right" bezelStyle="texturedSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OOl-RF-o73">
+                                            <buttonCell key="cell" type="squareTextured" title="Left" bezelStyle="texturedSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="d8G-Ko-FaX">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
-                                                <string key="keyEquivalent">r</string>
+                                                <string key="keyEquivalent">l</string>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="setRight:" target="Voe-Tx-rLC" id="9JL-t2-aDh"/>
+                                                <action selector="setLeft:" target="Voe-Tx-rLC" id="d0l-f3-kXe"/>
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" id="9XU-tj-Fvh">
@@ -496,16 +449,16 @@ DQ
                                                 <action selector="saveToAperture:" target="Voe-Tx-rLC" id="6Aq-dd-R18"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" id="so8-qq-f8D">
-                                            <rect key="frame" x="15" y="202" width="79" height="27"/>
+                                        <button verticalHuggingPriority="750" id="SUQ-12-Bfl">
+                                            <rect key="frame" x="178" y="201" width="79" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="squareTextured" title="Left" bezelStyle="texturedSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="d8G-Ko-FaX">
+                                            <buttonCell key="cell" type="squareTextured" title="Right" bezelStyle="texturedSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OOl-RF-o73">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
-                                                <string key="keyEquivalent">l</string>
+                                                <string key="keyEquivalent">r</string>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="setLeft:" target="Voe-Tx-rLC" id="d0l-f3-kXe"/>
+                                                <action selector="setRight:" target="Voe-Tx-rLC" id="9JL-t2-aDh"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -516,18 +469,6 @@ DQ
                                     <binding destination="Voe-Tx-rLC" name="hidden" keyPath="theView.toolsVisible" id="Ymx-Pi-kyN"/>
                                 </connections>
                             </box>
-                            <button id="Op6-fB-1hB">
-                                <rect key="frame" x="840" y="0.0" width="184" height="800"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
-                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="only" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="fML-Ab-e9P">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="10"/>
-                                    <string key="keyEquivalent">n</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="nextImage:" target="Voe-Tx-rLC" id="1HA-db-PXI"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <connections>
                             <binding destination="P10-BU-r2p" name="hidden" keyPath="values.theView.toolsVisible" id="KCS-4r-ZQ7"/>
@@ -535,6 +476,13 @@ DQ
                     </customView>
                 </subviews>
             </view>
+            <connections>
+                <binding destination="Voe-Tx-rLC" name="displayPatternTitle1" keyPath="self.imageCount" id="1wr-17-8lZ">
+                    <dictionary key="options">
+                        <string key="NSDisplayPattern">Watermarker - %{title1}@</string>
+                    </dictionary>
+                </binding>
+            </connections>
             <point key="canvasLocation" x="122" y="424"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="P10-BU-r2p"/>

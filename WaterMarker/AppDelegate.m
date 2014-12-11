@@ -48,15 +48,25 @@
   return @"BL12S10X2Y2";
 }
 
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
   Aperture = [[NSClassFromString(@"IWApertureAccess") alloc] init];
   [theView setWatermarkImage:[[NSImage alloc] initWithContentsOfFile:@"/Users/iain/Pictures/Watermarks/Soulflyer2000.png"]];
-  
+  [self doOpenFiles];
+
+}
+
+
+- (IBAction)openFiles:(id)sender {
+  [self doOpenFiles];
+}
+
+-(void)doOpenFiles{
   selectedImages=[Aperture getSelectedPhotos];
   NSImage *theImage = [self getPreviewImageOfPic:selectedImages[0]];
   [theView setImage:theImage];
   [theView initWatermarkValues:[self getWatermark:selectedImages[0]]];
-
+  [self setImageCount:@""];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -66,7 +76,8 @@
 
 - (IBAction)previousImage:(id)sender {
   if (imageIndex > 0){
-    imageIndex -= 1;
+    [self setImageIndex:imageIndex - 1];
+    //imageIndex -= 1;
     NSImage *theImage = [self getPreviewImageOfPic:selectedImages[imageIndex]];
     [theView setImage:theImage];
     [theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
@@ -76,7 +87,8 @@
 
 - (IBAction)nextImage:(id)sender {
   if (imageIndex < selectedImages.count - 1){
-    imageIndex += 1;
+    [self setImageIndex:imageIndex + 1];
+    //imageIndex += 1;
     NSImage *theImage = [self getPreviewImageOfPic:selectedImages[imageIndex]];
     [theView setImage:theImage];
     [theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
@@ -85,7 +97,8 @@
 }
 
 - (IBAction)saveToAperture:(id)sender {
-  [Aperture writeIPTC:[theView watermarkValues] toField:@"SpecialInstructions" ofPic:[selectedImages[imageIndex] objectForKey:@"name"] ofProject:[selectedImages[imageIndex] objectForKey:@"project"] ofMonth:[selectedImages[imageIndex] objectForKey:@"month"] ofYear:[selectedImages[imageIndex] objectForKey:@"year"]];
+  int i = imageIndex;
+  [Aperture writeIPTC:[theView watermarkValues] toField:@"SpecialInstructions" ofPic:[selectedImages[i] objectForKey:@"name"] ofProject:[selectedImages[i] objectForKey:@"project"] ofMonth:[selectedImages[i] objectForKey:@"month"] ofYear:[selectedImages[i] objectForKey:@"year"]];
 }
 
 - (IBAction)saveAndNext:(id)sender {
@@ -191,11 +204,22 @@
   }
 }
 
--(IBAction)toggleVisibility:(id)sender{
-  if([theView toolsVisible]){
-    [theView setToolsVisible:NO];
-  }else{
-    [theView setToolsVisible:YES];
-  }
+
+-(NSString*)imageCount{
+  return [NSString stringWithFormat:@"Image %d of %d",imageIndex + 1, (int)[selectedImages count]];
 }
+
+-(void)setImageCount:(NSString*)str {
+}
+
+-(int)imageIndex{
+  return imageIndex;
+}
+
+-(void)setImageIndex:(int)newImageIndex{
+  imageIndex=newImageIndex;
+  [self setImageCount:@""];
+}
+
+
 @end

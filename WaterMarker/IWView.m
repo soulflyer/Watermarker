@@ -25,16 +25,20 @@
     theWindowContentRect.size.height = theWindowContentRect.size.width * image.size.height / image.size.width;
     theWindowRect = [[self window] frameRectForContentRect:theWindowContentRect];
         if(theWindowRect.size.height > visibleScreen.size.height){
-          theWindowRect.size.height=visibleScreen.size.height;
+          theWindowRect.size.height=visibleScreen.size.height - 10;
           theWindowRect.size.width=theWindowRect.size.height * image.size.width / image.size.height;
         }
         if(theWindowRect.size.width > visibleScreen.size.width){
-          theWindowRect.size.width = visibleScreen.size.width;
+          theWindowRect.size.width = visibleScreen.size.width - 20;
           theWindowRect.size.height = theWindowRect.size.width * image.size.height / image.size.width;
         }
     
     theWindowContentRect = [[self window] contentRectForFrameRect:theWindowRect];
+    
+    theWindowRect.origin.x = 10;
+    theWindowRect.origin.y = 10;
     [[self window] setContentSize:theWindowContentRect.size];
+    [[self window] setFrameOrigin:theWindowRect.origin];
     
     //Set the view to match the available space
     NSRect theViewRect = theWindowContentRect;
@@ -42,10 +46,7 @@
     [self setFrame:theViewRect];
     
     //Draw the image to the view
-    NSRect imageRect;
-    imageRect.origin=NSZeroPoint;
-    imageRect.size = [self frame].size;
-    [image drawInRect:imageRect];
+    [image drawInRect:theViewRect];
     
     //Draw the watermark over the image
     if([self watermarkImage]) {
@@ -84,6 +85,9 @@
     //watermarkString=@"BL20S15X1Y1";
     // Or use the previous values
     watermarkString=[self watermarkValues];
+    if ([watermarkString isEqualTo:@"TL0S0X0Y0"]) {
+      watermarkString = @"BL20S15X1Y1";
+    }
   }
   NSString* topBottom = [watermarkString substringToIndex:1];
   [self setBottom:true];
@@ -109,17 +113,17 @@
 -(NSString*)watermarkValues{
   NSString* upDown;
   NSString* leftRight;
-  if([self bottom]){
+  if(bottom){
     upDown=@"B";
   }else{
     upDown=@"T";
   }
-  if([self right ]){
+  if(right){
     leftRight=@"R";
   }else{
     leftRight=@"L";
   }
-  return [NSString stringWithFormat:@"%@%@%dS%dX%dY%d",upDown,leftRight,[self opacityPercent ],[self widthPercent ],[self xOffsetPercent ],[self yOffsetPercent ]];
+  return [NSString stringWithFormat:@"%@%@%dS%dX%dY%d",upDown,leftRight,opacityPercent,widthPercent,xOffsetPercent,yOffsetPercent];
 }
 
 -(void)setWatermarkValues:(NSString *)dummy{
