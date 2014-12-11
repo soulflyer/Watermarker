@@ -31,9 +31,7 @@
   NSString *project = [image objectForKey:@"project"];
   NSString *imagePath = [Aperture getPreviewOf:name ofProject:project ofMonth:month ofYear:year];
   NSArray  *previewArray = [imagePath componentsSeparatedByString:@"\r"];
-  NSLog(@"[previewArray count]: %lu",(unsigned long)[previewArray count]);
   if ([previewArray count] > 1){
-    NSLog(@"In getPreviewImageOfPic: %@",imagePath);
     NSDictionary *info = [NSDictionary dictionaryWithObject:@"Found multiple preview images, try changing the version name of one of the images in Aperture.\n\n Click ok to view the first preview pic found." forKey:NSLocalizedRecoverySuggestionErrorKey];
     NSError *error = [NSError errorWithDomain:@"Find Previews" code:1 userInfo:info];
     NSAlert *alert = [NSAlert alertWithError:error];
@@ -52,20 +50,13 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
   Aperture = [[NSClassFromString(@"IWApertureAccess") alloc] init];
-  //NSString *dataBasePath = [Aperture getDatabase];
-  
   [theView setWatermarkImage:[[NSImage alloc] initWithContentsOfFile:@"/Users/iain/Pictures/Watermarks/Soulflyer2000.png"]];
   
   selectedImages=[Aperture getSelectedPhotos];
   NSImage *theImage = [self getPreviewImageOfPic:selectedImages[0]];
   [theView setImage:theImage];
   [theView initWatermarkValues:[self getWatermark:selectedImages[0]]];
-  
-  //IWWriteIPTC *IWWriteIPTCInstance = [[NSClassFromString(@"IWWriteIPTC") alloc] init ];
-  
-  //NSString *result=[Aperture writeIPTC:@"BL66S15X1Y2" toField:@"SpecialInstructions" ofPic:firstname ofProject:firstProject ofMonth:firstMonth ofYear:firstYear];
-  //NSLog(@"%@",result);
-  
+
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -94,8 +85,6 @@
 }
 
 - (IBAction)saveToAperture:(id)sender {
-  NSLog(@"Button pressed");
-  NSLog(@"%@",[theView watermarkValues]);
   [Aperture writeIPTC:[theView watermarkValues] toField:@"SpecialInstructions" ofPic:[selectedImages[imageIndex] objectForKey:@"name"] ofProject:[selectedImages[imageIndex] objectForKey:@"project"] ofMonth:[selectedImages[imageIndex] objectForKey:@"month"] ofYear:[selectedImages[imageIndex] objectForKey:@"year"]];
 }
 
