@@ -23,20 +23,18 @@
     NSRect theWindowRect = [[self window] frame];
     NSRect theWindowContentRect = [[self window] contentRectForFrameRect:theWindowRect];
     theWindowContentRect.size.height = theWindowContentRect.size.width * image.size.height / image.size.width;
-    [[self window] setContentSize:theWindowContentRect.size];
+    theWindowRect = [[self window] frameRectForContentRect:theWindowContentRect];
+        if(theWindowRect.size.height > visibleScreen.size.height){
+          theWindowRect.size.height=visibleScreen.size.height;
+          theWindowRect.size.width=theWindowRect.size.height * image.size.width / image.size.height;
+        }
+        if(theWindowRect.size.width > visibleScreen.size.width){
+          theWindowRect.size.width = visibleScreen.size.width;
+          theWindowRect.size.height = theWindowRect.size.width * image.size.height / image.size.width;
+        }
     
-    theWindowRect = [[self window] frame];
-    if(theWindowRect.size.height > visibleScreen.size.height){
-      theWindowRect.size.height=visibleScreen.size.height;
-      theWindowRect.size.width=theWindowRect.size.height * image.size.width / image.size.height;
-    }
-    if(theWindowRect.size.width > visibleScreen.size.width){
-      theWindowRect.size.width = visibleScreen.size.width;
-      theWindowRect.size.height = theWindowRect.size.width * image.size.height / image.size.width;
-    }
-    
-    [[self window] setFrame:theWindowRect display:false];
     theWindowContentRect = [[self window] contentRectForFrameRect:theWindowRect];
+    [[self window] setContentSize:theWindowContentRect.size];
     
     //Set the view to match the available space
     NSRect theViewRect = theWindowContentRect;
@@ -82,7 +80,10 @@
 
 -(void)initWatermarkValues:(NSString*)watermarkString{
   if([watermarkString isEqualTo:@""]){
-    watermarkString=@"BL12S10X1Y1";
+    // Provide a default string if param is the empty string
+    //watermarkString=@"BL20S15X1Y1";
+    // Or use the previous values
+    watermarkString=[self watermarkValues];
   }
   NSString* topBottom = [watermarkString substringToIndex:1];
   [self setBottom:true];

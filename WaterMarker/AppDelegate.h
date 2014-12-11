@@ -21,6 +21,7 @@
 - (IBAction)previousImage:(id)sender;
 - (IBAction)nextImage:(id)sender;
 - (IBAction)saveToAperture:(id)sender;
+- (IBAction)saveAndNext:(id)sender;
 
 -(IBAction)setBottom:(id)sender;
 -(IBAction)setTop:(id)sender;

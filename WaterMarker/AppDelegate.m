@@ -88,6 +88,11 @@
   [Aperture writeIPTC:[theView watermarkValues] toField:@"SpecialInstructions" ofPic:[selectedImages[imageIndex] objectForKey:@"name"] ofProject:[selectedImages[imageIndex] objectForKey:@"project"] ofMonth:[selectedImages[imageIndex] objectForKey:@"month"] ofYear:[selectedImages[imageIndex] objectForKey:@"year"]];
 }
 
+- (IBAction)saveAndNext:(id)sender {
+  [self saveToAperture:sender];
+  [self nextImage:sender];
+}
+
 -(IBAction)setBottom:(id)sender{
   [theView setBottom:YES];
 }
