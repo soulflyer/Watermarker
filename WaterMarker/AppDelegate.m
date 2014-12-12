@@ -29,7 +29,9 @@
   NSString *year    = [image objectForKey:@"year"];
   NSString *month   = [image objectForKey:@"month"];
   NSString *project = [image objectForKey:@"project"];
+  NSLog(@"%@ %@ %@ %@",year,month,project,name);
   NSString *imagePath = [Aperture getPreviewOf:name ofProject:project ofMonth:month ofYear:year];
+  NSLog(@"Imagepath: %@",imagePath);
   NSArray  *previewArray = [imagePath componentsSeparatedByString:@"\r"];
   if ([previewArray count] > 1){
     NSDictionary *info = [NSDictionary dictionaryWithObject:@"Found multiple preview images, try changing the version name of one of the images in Aperture.\n\n Click ok to view the first preview pic found." forKey:NSLocalizedRecoverySuggestionErrorKey];
@@ -66,7 +68,9 @@
   NSImage *theImage = [self getPreviewImageOfPic:selectedImages[0]];
   [theView setImage:theImage];
   [theView initWatermarkValues:[self getWatermark:selectedImages[0]]];
+  [self setImageIndex:(int)[selectedImages count]];
   [self setImageCount:@""];
+  [self setImageIndex:0];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

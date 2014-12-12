@@ -63,6 +63,9 @@ script IWApertureAccess
 				tell folder theMonth
 					tell project theProject
 						set sels to every image version where name is thePic
+						if (count of sels) is greater than 1 then
+							display alert "Multiple possible pics"
+						end if
 						set sel to first item of sels
 						tell sel
 							make new IPTC tag with properties {name:iptcField, value:iptcData}
@@ -82,9 +85,17 @@ script IWApertureAccess
 		try
 			set result to do shell script theScript
 			return result as text
-		on error
-			return "Can't_find_" & thePic
 		end try
+		log "Couldn't find it, searching library"
+		set thePath to my getLibrary() & "/Previews"
+		set theScript to "find " & quoted form of thePath & " -name " & thePic & ".*"
+		log theScript
+		try
+			set result to do shell script theScript
+			return result as text
+		end try
+		log "Failed to find it in the entire Library"
+		return "Cant_find_" & thePic
 	end getPreviewOf:ofProject:ofMonth:ofYear:
 	
 	on monthToString(monthint)
