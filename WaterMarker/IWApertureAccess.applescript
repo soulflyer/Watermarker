@@ -79,23 +79,26 @@ script IWApertureAccess
 	
 	on getPreviewOf:thePic ofProject:theProject ofMonth:theMonth ofYear:theYear
 		-- This could just as easily be done in objc, but logically it fits here with the other aperture access methods
+		log "thePic " & thePic & " theProject " & theProject & " theMonth " & theMonth & " theYear " & theYear
 		set thePath to my getLibrary()
 		set thePath to thePath & "/Previews/" & theYear & "/" & theMonth
 		set theScript to "find " & quoted form of thePath & " -name " & thePic & ".*"
-		try
-			set result to do shell script theScript
-			return result as text
-		end try
-		log "Couldn't find it, searching library"
-		set thePath to my getLibrary() & "/Previews"
-		set theScript to "find " & quoted form of thePath & " -name " & thePic & ".*"
 		log theScript
-		try
-			set result to do shell script theScript
-			return result as text
-		end try
-		log "Failed to find it in the entire Library"
-		return "Cant_find_" & thePic
+		set myresult to do shell script theScript
+		if length of myresult is 0 then
+			log "Couldn't find it, searching library"
+			set thePath to my getLibrary() & "/Previews"
+			set theScript to "find " & quoted form of thePath & " -name " & thePic & ".*"
+			log theScript
+			set myresult to do shell script theScript
+			log "result (second) :" & myresult
+		end if
+		if (length of myresult is 0) then
+			log "Failed to find it in the entire Library"
+			return "Cant_find_" & thePic
+		end if
+		log "Result is " & myresult
+		return myresult as text
 	end getPreviewOf:ofProject:ofMonth:ofYear:
 	
 	on monthToString(monthint)
