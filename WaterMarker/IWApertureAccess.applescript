@@ -85,13 +85,22 @@ script IWApertureAccess
 		set theScript to "find " & quoted form of thePath & " -name " & thePic & ".*"
 		log theScript
 		set myresult to do shell script theScript
+    if length of myresult is 0 then
+      log "Couldn't find it, searching whole year"
+      set thePath to my getLibrary()
+      set thePath to thePath & "/Previews/" & theYear
+      set theScript to "find " & quoted form of thePath & " -name " & thePic & ".*"
+      log theScript
+      set myresult to do shell script theScript
+      log "result: " & myresult
+    end if
 		if length of myresult is 0 then
 			log "Couldn't find it, searching library"
 			set thePath to my getLibrary() & "/Previews"
 			set theScript to "find " & quoted form of thePath & " -name " & thePic & ".*"
 			log theScript
 			set myresult to do shell script theScript
-			log "result (second) :" & myresult
+			log "result: " & myresult
 		end if
 		if (length of myresult is 0) then
 			log "Failed to find it in the entire Library"
