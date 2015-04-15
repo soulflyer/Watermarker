@@ -62,14 +62,15 @@ script IWApertureAccess
 			tell folder theYear
 				tell folder theMonth
 					tell project theProject
-						set sels to every image version where name is thePic
-						if (count of sels) is greater than 1 then
-							display alert "Multiple possible pics"
-						end if
-						set sel to first item of sels
-						tell sel
-							make new IPTC tag with properties {name:iptcField, value:iptcData}
-						end tell
+            set sels to every image version where name is thePic
+            if (count of sels) is greater than 1 then
+              display alert "Multiple possible pics called " & thePic & " in " & theProject & ", not adding watermark. Please change the version name so each is unique."
+            else
+              set sel to first item of sels
+              tell sel
+                make new IPTC tag with properties {name:iptcField, value:iptcData}
+              end tell
+            end if
 					end tell
 				end tell
 			end tell

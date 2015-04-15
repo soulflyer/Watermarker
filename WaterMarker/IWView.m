@@ -11,30 +11,28 @@
 @implementation IWView
 
 - (void)drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
-    
-    // Drawing code here.
+  [super drawRect:dirtyRect];
+  // Drawing code here.
   [[NSColor redColor] set];
   NSRectFill([self frame]);
   if(image){
     NSRect visibleScreen = [[NSScreen mainScreen] visibleFrame];
-   
+    
     //Set the window to the right proportions
     NSRect theWindowRect = [[self window] frame];
     NSRect theWindowContentRect = [[self window] contentRectForFrameRect:theWindowRect];
     theWindowContentRect.size.height = theWindowContentRect.size.width * image.size.height / image.size.width;
     theWindowRect = [[self window] frameRectForContentRect:theWindowContentRect];
-        if(theWindowRect.size.height > visibleScreen.size.height){
-          theWindowRect.size.height=visibleScreen.size.height - 10;
-          theWindowRect.size.width=theWindowRect.size.height * image.size.width / image.size.height;
-        }
-        if(theWindowRect.size.width > visibleScreen.size.width){
-          theWindowRect.size.width = visibleScreen.size.width - 20;
-          theWindowRect.size.height = theWindowRect.size.width * image.size.height / image.size.width;
-        }
+    if(theWindowRect.size.height > visibleScreen.size.height){
+      theWindowRect.size.height=visibleScreen.size.height - 10;
+      theWindowRect.size.width=theWindowRect.size.height * image.size.width / image.size.height;
+    }
+    if(theWindowRect.size.width > visibleScreen.size.width){
+      theWindowRect.size.width = visibleScreen.size.width - 20;
+      theWindowRect.size.height = theWindowRect.size.width * image.size.height / image.size.width;
+    }
     
     theWindowContentRect = [[self window] contentRectForFrameRect:theWindowRect];
-    
     theWindowRect.origin.x = 10;
     theWindowRect.origin.y = 10;
     [[self window] setContentSize:theWindowContentRect.size];

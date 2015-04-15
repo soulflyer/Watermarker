@@ -71,6 +71,8 @@
   [self setImageIndex:(int)[selectedImages count]];
   [self setImageCount:@""];
   [self setImageIndex:0];
+  [theView setToolsVisible:true];
+  [[theView window] performZoom:self];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -85,6 +87,7 @@
     NSImage *theImage = [self getPreviewImageOfPic:selectedImages[imageIndex]];
     [theView setImage:theImage];
     [theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
+    [[theView window] performZoom:self];
     [theView setNeedsDisplay:true];
   }
 }
@@ -97,12 +100,14 @@
     [theView setImage:theImage];
     [theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
     [theView setNeedsDisplay:true];
+    [[theView window] performZoom:self];
   }
 }
 
 - (IBAction)saveToAperture:(id)sender {
   int i = imageIndex;
   [Aperture writeIPTC:[theView watermarkValues] toField:@"SpecialInstructions" ofPic:[selectedImages[i] objectForKey:@"name"] ofProject:[selectedImages[i] objectForKey:@"project"] ofMonth:[selectedImages[i] objectForKey:@"month"] ofYear:[selectedImages[i] objectForKey:@"year"]];
+  NSLog(@"wrote to SpecialInstructions: %@",[theView watermarkValues]);
 }
 
 - (IBAction)saveAndNext:(id)sender {
