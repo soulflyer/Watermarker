@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "IWView.h"
+#import "IWDuplicateView.h"
 @class IWApertureAccess;
 
 @interface IWApertureAccess : NSObject
@@ -31,14 +32,31 @@
   NSString *project = [image objectForKey:@"project"];
   NSLog(@"%@ %@ %@ %@",year,month,project,name);
   NSString *imagePath = [Aperture getPreviewOf:name ofProject:project ofMonth:month ofYear:year];
-  NSLog(@"Imagepath: %@",imagePath);
   NSArray  *previewArray = [imagePath componentsSeparatedByString:@"\r"];
   if ([previewArray count] > 1){
-    NSDictionary *info = [NSDictionary dictionaryWithObject:@"Found multiple preview images, try changing the version name of one of the images in Aperture.\n\n Click ok to view the first preview pic found." forKey:NSLocalizedRecoverySuggestionErrorKey];
-    NSError *error = [NSError errorWithDomain:@"Find Previews" code:1 userInfo:info];
-    NSAlert *alert = [NSAlert alertWithError:error];
-    [alert runModal];
-    imagePath = previewArray[0];
+    for (int i = 0; i < [previewArray count]; i++) {
+      NSDictionary *info = [NSDictionary dictionaryWithObject:@"Found multiple images, click ok if this is the right one" forKey:NSLocalizedRecoverySuggestionErrorKey];
+      NSError *error = [NSError errorWithDomain:@"Find Previews" code:1 userInfo:info];
+      NSAlert *alert = [NSAlert alertWithError:error];
+      NSImage * anImage = [[NSImage alloc] initWithContentsOfFile:previewArray[i]];
+      NSRect accessoryRect;
+      accessoryRect.origin = NSZeroPoint;
+      accessoryRect.size.width = 500;
+      accessoryRect.size.height = 500 * ([anImage size].height/[anImage size].width);
+      //accessoryRect.size = [anImage size];
+      IWDuplicateView *duplicateView = [[IWDuplicateView alloc] initWithFrame:accessoryRect];
+      [duplicateView setImage:anImage];
+      [alert addButtonWithTitle:@"OK"];
+      [alert addButtonWithTitle:@"next"];
+      [alert setAccessoryView:duplicateView];
+      long returnValue = [alert runModal];
+      if (returnValue == 1000) {
+         return anImage;
+      }
+      if (i==[previewArray count]-1) {
+        i=-1;
+      }
+    }
   }
   return [[NSImage alloc] initWithContentsOfFile:imagePath];
 }

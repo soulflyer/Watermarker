@@ -17,6 +17,7 @@
 		AE0E230A1A259F1E008353E6 /* IWApertureAccess.applescript in Sources */ = {isa = PBXBuildFile; fileRef = AE0E23081A259EE9008353E6 /* IWApertureAccess.applescript */; };
 		AE0E230C1A25DA42008353E6 /* README in Resources */ = {isa = PBXBuildFile; fileRef = AE0E230B1A25DA42008353E6 /* README */; };
 		AE0E230F1A2C40D4008353E6 /* IWView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0E230E1A2C40D4008353E6 /* IWView.m */; };
+		AE6CE97E1AE11935005DD31A /* IWDuplicateView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6CE97D1AE11935005DD31A /* IWDuplicateView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,8 @@
 		AE0E230B1A25DA42008353E6 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = SOURCE_ROOT; };
 		AE0E230D1A2C40D4008353E6 /* IWView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWView.h; sourceTree = "<group>"; };
 		AE0E230E1A2C40D4008353E6 /* IWView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWView.m; sourceTree = "<group>"; };
+		AE6CE97C1AE11935005DD31A /* IWDuplicateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWDuplicateView.h; sourceTree = "<group>"; };
+		AE6CE97D1AE11935005DD31A /* IWDuplicateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWDuplicateView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,8 @@
 				AE0E23081A259EE9008353E6 /* IWApertureAccess.applescript */,
 				AE0E22E61A2463BD008353E6 /* Images.xcassets */,
 				AE0E22E81A2463BD008353E6 /* MainMenu.xib */,
+				AE6CE97C1AE11935005DD31A /* IWDuplicateView.h */,
+				AE6CE97D1AE11935005DD31A /* IWDuplicateView.m */,
 				AE0E22DF1A2463BD008353E6 /* Supporting Files */,
 			);
 			path = WaterMarker;
@@ -229,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE0E230A1A259F1E008353E6 /* IWApertureAccess.applescript in Sources */,
+				AE6CE97E1AE11935005DD31A /* IWDuplicateView.m in Sources */,
 				AE0E22E51A2463BD008353E6 /* main.m in Sources */,
 				AE0E230F1A2C40D4008353E6 /* IWView.m in Sources */,
 				AE0E22E31A2463BD008353E6 /* AppDelegate.m in Sources */,
@@ -418,6 +424,7 @@
 				AE0E22FB1A2463BE008353E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AE0E22FC1A2463BE008353E6 /* Build configuration list for PBXNativeTarget "WaterMarkerTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +433,7 @@
 				AE0E22FE1A2463BE008353E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
