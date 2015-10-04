@@ -36,9 +36,9 @@
 		AE0E22E11A2463BD008353E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AE0E22E21A2463BD008353E6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AE0E22E41A2463BD008353E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AE0E22E61A2463BD008353E6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AE0E22E61A2463BD008353E6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images.xcassets; sourceTree = "<group>"; };
 		AE0E22E91A2463BD008353E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		AE0E22EF1A2463BD008353E6 /* WaterMarkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WaterMarkerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE0E22EF1A2463BD008353E6 /* WaterMarkerTests */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = file; name = WaterMarkerTests; path = WaterMarkerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE0E22F41A2463BD008353E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE0E22F51A2463BD008353E6 /* WaterMarkerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterMarkerTests.m; sourceTree = "<group>"; };
 		AE0E22FF1A2463CF008353E6 /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = System/Library/Frameworks/AppleScriptObjC.framework; sourceTree = SDKROOT; };
@@ -83,7 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				AE0E22DC1A2463BD008353E6 /* WaterMarker.app */,
-				AE0E22EF1A2463BD008353E6 /* WaterMarkerTests.xctest */,
+				AE0E22EF1A2463BD008353E6 /* WaterMarkerTests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,7 +167,7 @@
 			);
 			name = WaterMarkerTests;
 			productName = WaterMarkerTests;
-			productReference = AE0E22EF1A2463BD008353E6 /* WaterMarkerTests.xctest */;
+			productReference = AE0E22EF1A2463BD008353E6 /* WaterMarkerTests */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -176,7 +176,7 @@
 		AE0E22D41A2463BD008353E6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = soulflyer;
 				TargetAttributes = {
 					AE0E22DB1A2463BD008353E6 = {
@@ -291,6 +291,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
