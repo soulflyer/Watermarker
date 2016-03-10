@@ -1,9 +1,11 @@
 #!/bin/bash
 
+EXIFTOOL="/usr/local/bin/exiftool"
+
 for i in $*
 do
 
-    EXIFDATE=`exiftool -s3 -DateTimeOriginal $i`
+    EXIFDATE=`$EXIFTOOL -s3 -DateTimeOriginal $i`
     YEAR=${EXIFDATE:0:4}
     # YEAR="2013"
     echo "Year: $YEAR"
@@ -14,13 +16,13 @@ do
         /Users/iain/bin/create-watermark.sh $YEAR
     fi
 
-    INSTRUCTIONS=`exiftool -s3 -SpecialInstructions $i`
+    INSTRUCTIONS=`$EXIFTOOL -s3 -SpecialInstructions $i`
     if [[ -z $INSTRUCTIONS ]]
     then
         INSTRUCTIONS="BR30S18X4Y4"
     fi
-    WIDTH=`exiftool -s3 -ImageWidth $i`
-    HEIGHT=`exiftool -s3 -ImageHeight $i`
+    WIDTH=`$EXIFTOOL -s3 -ImageWidth $i`
+    HEIGHT=`$EXIFTOOL -s3 -ImageHeight $i`
 
     echo `basename $i`
 
