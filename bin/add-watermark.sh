@@ -24,11 +24,11 @@ do
     WIDTH=`$EXIFTOOL -s3 -ImageWidth $i`
     HEIGHT=`$EXIFTOOL -s3 -ImageHeight $i`
 
-    echo `basename $i`
+    # echo `basename $i`
 
-    echo $WIDTH
-    echo $HEIGHT
-    echo $INSTRUCTIONS
+    # echo $WIDTH
+    # echo $HEIGHT
+    # echo $INSTRUCTIONS
 
     CORNER=${INSTRUCTIONS:0:2}
     case $CORNER in
@@ -46,7 +46,7 @@ do
             ;;
     esac
     # Reads the first 2 chars and turns them into a gravity parameter for imagemagick
-    echo "gravity: " $CORNER
+    # echo "gravity: " $CORNER
 
     INSTRUCTIONS=${INSTRUCTIONS:2}
     # Chops of the letters at the front leaving this: 31S22X2Y2
@@ -88,9 +88,9 @@ do
     WIDTH=$(($WIDTH * $SIZE / 100))
     HEIGHT=$(($HEIGHT * $SIZE / 100))
 
-    echo "W: " $WIDTH "H: " $HEIGHT "X: " $XOFFSET "Y: " $YOFFSET
+    # echo "W: " $WIDTH "H: " $HEIGHT "X: " $XOFFSET "Y: " $YOFFSET
 
-    echo "Res: " $RES
+    # echo "Res: " $RES
 
     COMMAND="/opt/local/bin/composite -dissolve $OPACITY -gravity $CORNER -geometry ${WIDTH}x$HEIGHT+$XOFFSET+$YOFFSET $WATERMARKFILE $i $i"
 

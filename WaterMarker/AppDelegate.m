@@ -31,6 +31,8 @@
   NSString *month   = [image objectForKey:@"month"];
   NSString *project = [image objectForKey:@"project"];
   NSLog(@"%@ %@ %@ %@",year,month,project,name);
+  // TODO: Change the following to get the path to the master
+  // Can get rid of the array of previews. There is only one master.
   NSString *imagePath = [Aperture getPreviewOf:name ofProject:project ofMonth:month ofYear:year];
   NSArray  *previewArray = [imagePath componentsSeparatedByString:@"\r"];
   if ([previewArray count] > 1){
@@ -82,6 +84,7 @@
 }
 
 -(void)doOpenFiles{
+  // TODO: Change this so it gets the list of images from the finder selection, or the command line
   selectedImages=[Aperture getSelectedPhotos];
   NSImage *theImage = [self getPreviewImageOfPic:selectedImages[0]];
   [theView setImage:theImage];
@@ -123,6 +126,7 @@
 }
 
 - (IBAction)saveToAperture:(id)sender {
+  //TODO: rewrite so it writes to the master image aswell/instead
   int i = imageIndex;
   [Aperture writeIPTC:[theView watermarkValues] toField:@"SpecialInstructions" ofPic:[selectedImages[i] objectForKey:@"name"] ofProject:[selectedImages[i] objectForKey:@"project"] ofMonth:[selectedImages[i] objectForKey:@"month"] ofYear:[selectedImages[i] objectForKey:@"year"]];
   NSLog(@"wrote to SpecialInstructions: %@",[theView watermarkValues]);
