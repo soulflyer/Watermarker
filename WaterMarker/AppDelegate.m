@@ -25,17 +25,17 @@
 
 @implementation AppDelegate
 
-- (NSString *)getWatermark:(NSDictionary*)image {
-  if ([image objectForKey:@"watermark"]) {
-    return [image objectForKey:@"watermark"];
-  }
-  return @"BL12S10X2Y2";
-}
+//- (NSString *)getWatermark:(NSDictionary*)image {
+//  if ([image objectForKey:@"watermark"]) {
+//    return [image objectForKey:@"watermark"];
+//  }
+//  return @"BL12S10X2Y2";
+//}
 
 - (NSString *)getWatermarkPosition:(NSURL*)imageFile {
   CGImageSourceRef source = CGImageSourceCreateWithURL((__bridge CFURLRef)imageFile, NULL);
   NSDictionary *props = (__bridge_transfer NSDictionary *) CGImageSourceCopyPropertiesAtIndex(source, 0, NULL);
-  NSLog(@"props %@", props);
+//  NSLog(@"props %@", props);
   NSDictionary *iptc = [props valueForKey:@"{IPTC}"];
   NSLog(@"IPTC  %@", iptc);
   NSString *specialInstructions = [iptc valueForKey:@"SpecialInstructions"];
@@ -96,7 +96,7 @@
     [self setImageIndex:imageIndex - 1];
     NSImage *theImage = [[NSImage alloc] initWithContentsOfURL:directoryImages[imageIndex]];
     [theView setImage:theImage];
-    //[theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
+    [theView initWatermarkValues:[self getWatermarkPosition:directoryImages[imageIndex]]];
     [[theView window] performZoom:self];
     [theView setNeedsDisplay:true];
   }
@@ -107,7 +107,7 @@
     [self setImageIndex:imageIndex + 1];
     NSImage *theImage = [[NSImage alloc] initWithContentsOfURL:directoryImages[imageIndex]];
     [theView setImage:theImage];
-    //[theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
+    [theView initWatermarkValues:[self getWatermarkPosition:directoryImages[imageIndex]]];
     [theView setNeedsDisplay:true];
     [[theView window] performZoom:self];
   }
@@ -118,6 +118,24 @@
   //int i = imageIndex;
   //[Aperture writeIPTC:[theView watermarkValues] toField:@"SpecialInstructions" ofPic:[selectedImages[i] objectForKey:@"name"] ofProject:[selectedImages[i] objectForKey:@"project"] ofMonth:[selectedImages[i] objectForKey:@"month"] ofYear:[selectedImages[i] objectForKey:@"year"]];
   NSLog(@"wrote to SpecialInstructions: %@",[theView watermarkValues]);
+  
+  CGImageSourceRef source = CGImageSourceCreateWithURL((__bridge CFURLRef)directoryImages[imageIndex], NULL);
+  CFStringRef imageType = CGImageSourceGetType(source);
+  NSDictionary *props = (__bridge_transfer NSDictionary *) CGImageSourceCopyPropertiesAtIndex(source, 0, NULL);
+  NSDictionary *iptc = [props valueForKey:@"{IPTC}"];
+  
+  NSMutableDictionary *newProps = [NSMutableDictionary dictionaryWithDictionary:props];
+  NSMutableDictionary *newIptc  = [NSMutableDictionary dictionaryWithDictionary:iptc];
+  [newIptc setObject:[theView watermarkValues] forKey:@"SpecialInstructions"];
+  [newProps setObject:newIptc forKey:@"{IPTC}"];
+  
+  NSMutableData *resultData = [NSMutableData data];
+  CGImageDestinationRef imgDest = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)(resultData), imageType, 1, NULL);
+  
+  CGImageDestinationAddImageFromSource(imgDest, source, 0, (__bridge CFDictionaryRef)(newProps));
+  BOOL success = CGImageDestinationFinalize(imgDest);
+  NSLog(@"success is %hhd",success);
+  [resultData writeToURL:directoryImages[imageIndex] atomically:YES];
 }
 
 - (IBAction)saveAndNext:(id)sender {
