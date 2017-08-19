@@ -77,7 +77,7 @@
     NSImage *theImage = [[NSImage alloc] initWithContentsOfURL:directoryImages[0]];
     NSLog(@"getWatermarkPosition returned: %@",[self getWatermarkPosition:directoryImages[0]]);
     [theView setImage:theImage];
-    //[theView initWatermarkValues:[self getWatermark:selectedImages[0]]];
+    [theView initWatermarkValues:[self getWatermarkPosition:directoryImages[0]]];
     [self setImageIndex:(int)[directoryImages count]];
     [self setImageCount:@""];
     [self setImageIndex:0];
