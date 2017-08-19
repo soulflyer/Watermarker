@@ -25,47 +25,23 @@
 
 @implementation AppDelegate
 
-- (NSImage *)getPreviewImageOfPic:(NSDictionary*)image {
-  NSString *name    = [image objectForKey:@"name"];
-  NSString *year    = [image objectForKey:@"year"];
-  NSString *month   = [image objectForKey:@"month"];
-  NSString *project = [image objectForKey:@"project"];
-  NSLog(@"%@ %@ %@ %@",year,month,project,name);
-  // TODO: Change the following to get the path to the master
-  // Can get rid of the array of previews. There is only one master.
-  NSString *imagePath = [Aperture getPreviewOf:name ofProject:project ofMonth:month ofYear:year];
-  NSArray  *previewArray = [imagePath componentsSeparatedByString:@"\r"];
-  if ([previewArray count] > 1){
-    for (int i = 0; i < [previewArray count]; i++) {
-      NSDictionary *info = [NSDictionary dictionaryWithObject:@"Found multiple images, click ok if this is the right one" forKey:NSLocalizedRecoverySuggestionErrorKey];
-      NSError *error = [NSError errorWithDomain:@"Find Previews" code:1 userInfo:info];
-      NSAlert *alert = [NSAlert alertWithError:error];
-      NSImage * anImage = [[NSImage alloc] initWithContentsOfFile:previewArray[i]];
-      NSRect accessoryRect;
-      accessoryRect.origin = NSZeroPoint;
-      accessoryRect.size.width = 500;
-      accessoryRect.size.height = 500 * ([anImage size].height/[anImage size].width);
-      //accessoryRect.size = [anImage size];
-      IWDuplicateView *duplicateView = [[IWDuplicateView alloc] initWithFrame:accessoryRect];
-      [duplicateView setImage:anImage];
-      [alert addButtonWithTitle:@"OK"];
-      [alert addButtonWithTitle:@"next"];
-      [alert setAccessoryView:duplicateView];
-      long returnValue = [alert runModal];
-      if (returnValue == 1000) {
-         return anImage;
-      }
-      if (i==[previewArray count]-1) {
-        i=-1;
-      }
-    }
-  }
-  return [[NSImage alloc] initWithContentsOfFile:imagePath];
-}
-
 - (NSString *)getWatermark:(NSDictionary*)image {
   if ([image objectForKey:@"watermark"]) {
     return [image objectForKey:@"watermark"];
+  }
+  return @"BL12S10X2Y2";
+}
+
+- (NSString *)getWatermarkPosition:(NSURL*)imageFile {
+  CGImageSourceRef source = CGImageSourceCreateWithURL((__bridge CFURLRef)imageFile, NULL);
+  NSDictionary *props = (__bridge_transfer NSDictionary *) CGImageSourceCopyPropertiesAtIndex(source, 0, NULL);
+  NSLog(@"props %@", props);
+  NSDictionary *iptc = [props valueForKey:@"{IPTC}"];
+  NSLog(@"IPTC  %@", iptc);
+  NSString *specialInstructions = [iptc valueForKey:@"SpecialInstructions"];
+  NSLog(@"rating %@", specialInstructions);
+  if (specialInstructions) {
+    return specialInstructions;
   }
   return @"BL12S10X2Y2";
 }
@@ -75,25 +51,39 @@
   Aperture = [[NSClassFromString(@"IWApertureAccess") alloc] init];
   [theView setWatermarkImage:[[NSImage alloc] initWithContentsOfFile:@"/Users/iain/Pictures/Watermarks/Soulflyer2000.png"]];
   [self doOpenFiles];
-
 }
 
 
 - (IBAction)openFiles:(id)sender {
   [self doOpenFiles];
+  NSLog(@"Done openFiles");
 }
 
 -(void)doOpenFiles{
   // TODO: Change this so it gets the list of images from the finder selection, or the command line
-  selectedImages=[Aperture getSelectedPhotos];
-  NSImage *theImage = [self getPreviewImageOfPic:selectedImages[0]];
-  [theView setImage:theImage];
-  [theView initWatermarkValues:[self getWatermark:selectedImages[0]]];
-  [self setImageIndex:(int)[selectedImages count]];
-  [self setImageCount:@""];
-  [self setImageIndex:0];
-  [theView setToolsVisible:true];
-  [[theView window] performZoom:self];
+  NSOpenPanel* panel         = [NSOpenPanel openPanel];
+  panel.canChooseFiles       = NO;
+  panel.canChooseDirectories = YES;
+  [panel beginWithCompletionHandler:^(NSInteger result) {
+    chosenDirectory = panel.URL;
+    // the application may now do something with chosenDirectory
+    NSLog(@"absoluteURL = %@",[chosenDirectory absoluteURL]);
+    filemgr = [NSFileManager defaultManager];
+
+    //TODO: This assumes only images in the directory. Will mess up if there is anything else there.
+    directoryImages=[filemgr contentsOfDirectoryAtURL:chosenDirectory includingPropertiesForKeys:nil options: NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+
+
+    NSImage *theImage = [[NSImage alloc] initWithContentsOfURL:directoryImages[0]];
+    NSLog(@"getWatermarkPosition returned: %@",[self getWatermarkPosition:directoryImages[0]]);
+    [theView setImage:theImage];
+    //[theView initWatermarkValues:[self getWatermark:selectedImages[0]]];
+    [self setImageIndex:(int)[directoryImages count]];
+    [self setImageCount:@""];
+    [self setImageIndex:0];
+    [theView setToolsVisible:true];
+    [[theView window] performZoom:self];
+    }];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -104,22 +94,20 @@
 - (IBAction)previousImage:(id)sender {
   if (imageIndex > 0){
     [self setImageIndex:imageIndex - 1];
-    //imageIndex -= 1;
-    NSImage *theImage = [self getPreviewImageOfPic:selectedImages[imageIndex]];
+    NSImage *theImage = [[NSImage alloc] initWithContentsOfURL:directoryImages[imageIndex]];
     [theView setImage:theImage];
-    [theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
+    //[theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
     [[theView window] performZoom:self];
     [theView setNeedsDisplay:true];
   }
 }
 
 - (IBAction)nextImage:(id)sender {
-  if (imageIndex < selectedImages.count - 1){
+  if (imageIndex < directoryImages.count - 1){
     [self setImageIndex:imageIndex + 1];
-    //imageIndex += 1;
-    NSImage *theImage = [self getPreviewImageOfPic:selectedImages[imageIndex]];
+    NSImage *theImage = [[NSImage alloc] initWithContentsOfURL:directoryImages[imageIndex]];
     [theView setImage:theImage];
-    [theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
+    //[theView initWatermarkValues:[self getWatermark:selectedImages[imageIndex]]];
     [theView setNeedsDisplay:true];
     [[theView window] performZoom:self];
   }
@@ -127,8 +115,8 @@
 
 - (IBAction)saveToAperture:(id)sender {
   //TODO: rewrite so it writes to the master image aswell/instead
-  int i = imageIndex;
-  [Aperture writeIPTC:[theView watermarkValues] toField:@"SpecialInstructions" ofPic:[selectedImages[i] objectForKey:@"name"] ofProject:[selectedImages[i] objectForKey:@"project"] ofMonth:[selectedImages[i] objectForKey:@"month"] ofYear:[selectedImages[i] objectForKey:@"year"]];
+  //int i = imageIndex;
+  //[Aperture writeIPTC:[theView watermarkValues] toField:@"SpecialInstructions" ofPic:[selectedImages[i] objectForKey:@"name"] ofProject:[selectedImages[i] objectForKey:@"project"] ofMonth:[selectedImages[i] objectForKey:@"month"] ofYear:[selectedImages[i] objectForKey:@"year"]];
   NSLog(@"wrote to SpecialInstructions: %@",[theView watermarkValues]);
 }
 
@@ -164,7 +152,7 @@
   if([theView yOffsetPercent]>0){
     [theView setYOffsetPercent:[theView yOffsetPercent]-1];
   }
-  
+
 }
 
 -(void)decX{
@@ -237,7 +225,7 @@
 
 
 -(NSString*)imageCount{
-  return [NSString stringWithFormat:@"Image %d of %d",imageIndex + 1, (int)[selectedImages count]];
+  return [NSString stringWithFormat:@"Image %d of %d",imageIndex + 1, (int)[directoryImages count]];
 }
 
 -(void)setImageCount:(NSString*)str {

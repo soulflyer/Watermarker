@@ -13,6 +13,9 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>{
   IBOutlet IWView *theView;
   IBOutlet NSWindow *window;
+  NSArray *directoryImages;
+  NSFileManager *filemgr;
+  NSURL* chosenDirectory;
   NSArray *selectedImages;
   int imageIndex;
   NSDictionary *selectedImage;
