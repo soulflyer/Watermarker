@@ -8,7 +8,7 @@ do
     EXIFDATE=`$EXIFTOOL -s3 -DateTimeOriginal $i`
     YEAR=${EXIFDATE:0:4}
     # YEAR="2013"
-    echo "Year: $YEAR"
+    # echo "Year: $YEAR"
     WATERMARKFILE="/Users/iain/Pictures/watermarks/Soulflyer$YEAR.png"
     if [[ ! -f $WATERMARKFILE ]]
     then
@@ -53,7 +53,7 @@ do
 
     OPACITY="${INSTRUCTIONS%%[^[:digit:]]*}"
     # read the digits at the begining of INSTRUCTIONS
-    echo "Opacity: " $OPACITY
+    # echo "Opacity: " $OPACITY
     INSTRUCTIONS=${INSTRUCTIONS:${#OPACITY}}
 
     while [ ${#INSTRUCTIONS} -gt 0 ]
@@ -65,15 +65,15 @@ do
         case $KEY in
             S)
                 SIZE=$NUMBER
-                echo "Size: " $SIZE
+                # echo "Size: " $SIZE
                 ;;
             X)
                 XOFFSET=$NUMBER
-                echo "X: " $XOFFSET
+                # echo "X: " $XOFFSET
                 ;;
             Y)
                 YOFFSET=$NUMBER
-                echo "Y: " $YOFFSET
+                # echo "Y: " $YOFFSET
                 ;;
             *)
                 echo "bye"
@@ -94,7 +94,7 @@ do
 
     COMMAND="/opt/local/bin/composite -dissolve $OPACITY -gravity $CORNER -geometry ${WIDTH}x$HEIGHT+$XOFFSET+$YOFFSET $WATERMARKFILE $i $i"
 
-    echo $COMMAND
+    # echo $COMMAND
     $COMMAND
 
 done
