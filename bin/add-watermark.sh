@@ -13,7 +13,7 @@ do
     if [[ ! -f $WATERMARKFILE ]]
     then
         echo "Creating watermark: $YEAR"
-        /Users/iain/bin/create-watermark.sh $YEAR
+        /Users/iain/bin/create-watermark $YEAR
     fi
 
     INSTRUCTIONS=`$EXIFTOOL -s3 -SpecialInstructions $i`

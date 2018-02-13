@@ -16,6 +16,8 @@
   NSArray *directoryImages;
   NSFileManager *filemgr;
   NSURL* chosenDirectory;
+  NSArray *chosenDirectoryArray;
+  NSDictionary *attribs;
   NSArray *selectedImages;
   int imageIndex;
   NSDictionary *selectedImage;

@@ -43,7 +43,7 @@
   if (specialInstructions) {
     return specialInstructions;
   }
-  return @"BL12S10X2Y2";
+  return @"BL14S12X2Y2";
 }
 
 
@@ -62,18 +62,34 @@
 -(void)doOpenFiles{
   // TODO: Change this so it gets the list of images from the finder selection, or the command line
   NSOpenPanel* panel         = [NSOpenPanel openPanel];
-  panel.canChooseFiles       = NO;
+  panel.canChooseFiles       = YES;
   panel.canChooseDirectories = YES;
+  panel.allowsMultipleSelection = YES;
   [panel beginWithCompletionHandler:^(NSInteger result) {
     chosenDirectory = panel.URL;
+    chosenDirectoryArray = panel.URLs;
+    
+    
     // the application may now do something with chosenDirectory
     NSLog(@"absoluteURL = %@",[chosenDirectory absoluteURL]);
     filemgr = [NSFileManager defaultManager];
 
-    //TODO: This assumes only images in the directory. Will mess up if there is anything else there.
-    directoryImages=[filemgr contentsOfDirectoryAtURL:chosenDirectory includingPropertiesForKeys:nil options: NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+    NSURL *fileURL=chosenDirectoryArray[0];
+    
+    NSLog(@"file url: %@" ,fileURL);
+    attribs=[filemgr attributesOfItemAtPath: [fileURL path] error:NULL];
+    //ftype=[attribs objectForKey:NSFileType];
+    NSLog(@"attribs: %@", [attribs objectForKey:NSFileType]);
+    if ([attribs objectForKey:NSFileType]==NSFileTypeDirectory) {
+      NSLog(@"its a directory");
+      directoryImages=[filemgr contentsOfDirectoryAtURL:chosenDirectory includingPropertiesForKeys:nil options: NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+    }
+    else {
+      NSLog(@"its a file");
+      directoryImages=[panel URLs];
+    }
 
-
+    NSLog(@"directoryimages: %@", directoryImages);
     NSImage *theImage = [[NSImage alloc] initWithContentsOfURL:directoryImages[0]];
     NSLog(@"getWatermarkPosition returned: %@",[self getWatermarkPosition:directoryImages[0]]);
     [theView setImage:theImage];
@@ -118,20 +134,20 @@
   //int i = imageIndex;
   //[Aperture writeIPTC:[theView watermarkValues] toField:@"SpecialInstructions" ofPic:[selectedImages[i] objectForKey:@"name"] ofProject:[selectedImages[i] objectForKey:@"project"] ofMonth:[selectedImages[i] objectForKey:@"month"] ofYear:[selectedImages[i] objectForKey:@"year"]];
   NSLog(@"wrote to SpecialInstructions: %@",[theView watermarkValues]);
-  
+
   CGImageSourceRef source = CGImageSourceCreateWithURL((__bridge CFURLRef)directoryImages[imageIndex], NULL);
   CFStringRef imageType = CGImageSourceGetType(source);
   NSDictionary *props = (__bridge_transfer NSDictionary *) CGImageSourceCopyPropertiesAtIndex(source, 0, NULL);
   NSDictionary *iptc = [props valueForKey:@"{IPTC}"];
-  
+
   NSMutableDictionary *newProps = [NSMutableDictionary dictionaryWithDictionary:props];
   NSMutableDictionary *newIptc  = [NSMutableDictionary dictionaryWithDictionary:iptc];
   [newIptc setObject:[theView watermarkValues] forKey:@"SpecialInstructions"];
   [newProps setObject:newIptc forKey:@"{IPTC}"];
-  
+
   NSMutableData *resultData = [NSMutableData data];
   CGImageDestinationRef imgDest = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)(resultData), imageType, 1, NULL);
-  
+
   CGImageDestinationAddImageFromSource(imgDest, source, 0, (__bridge CFDictionaryRef)(newProps));
   BOOL success = CGImageDestinationFinalize(imgDest);
   NSLog(@"success is %hhd",success);
