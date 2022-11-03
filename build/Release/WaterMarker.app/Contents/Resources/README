@@ -1,0 +1,9 @@
+watermarker generates watermark codes and writes them to the IPTC field "SpecialInstructions"
+
+IWApertureAccess provides access to various parts of the Aperture library:
+
+GetSelectedPhotos gets the list of photos from the Aperture selection.
+GetDatabase returns the path to the database.
+GetLibrary returns the path to the current Aperture library.
+WriteIPTC writes info to an IPTC field of the given photo.
+GetPreview returns the path to the aperture preview

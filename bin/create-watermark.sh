@@ -26,8 +26,8 @@ NAME_BLACK_X=$(($NAME_X + $NAME_OFFSET))
 NAME_BLACK_Y=$(($NAME_Y + $NAME_OFFSET))
 YEAR_BLACK_X=$(($YEAR_X + $NAME_OFFSET))
 
-/opt/local/bin/convert -size 620x220 xc:transparent -font $FONT_NAME -stretch $FONT_STYLE\
-    -pointsize $LOGO_FONTSIZE -fill black\
+/usr/local/bin/convert -size 620x220 xc:transparent -font $FONT_NAME -stretch $FONT_STYLE\
+                       -pointsize $LOGO_FONTSIZE -fill black\
            -draw "fill-opacity $LOGO_FADE text $LOGO_BLACK_X,$LOGO_BLACK_Y '$LOGO'"\
     -pointsize $NAME_FONTSIZE\
            -draw "text $NAME_BLACK_X,$NAME_BLACK_Y '© $NAME'"\
