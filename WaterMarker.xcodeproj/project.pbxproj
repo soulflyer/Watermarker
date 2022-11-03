@@ -13,8 +13,6 @@
 		AE0E22EA1A2463BD008353E6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE0E22E81A2463BD008353E6 /* MainMenu.xib */; };
 		AE0E22F61A2463BD008353E6 /* WaterMarkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0E22F51A2463BD008353E6 /* WaterMarkerTests.m */; };
 		AE0E23001A2463CF008353E6 /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE0E22FF1A2463CF008353E6 /* AppleScriptObjC.framework */; };
-		AE0E23091A259EE9008353E6 /* IWApertureAccess.applescript in Resources */ = {isa = PBXBuildFile; fileRef = AE0E23081A259EE9008353E6 /* IWApertureAccess.applescript */; };
-		AE0E230A1A259F1E008353E6 /* IWApertureAccess.applescript in Sources */ = {isa = PBXBuildFile; fileRef = AE0E23081A259EE9008353E6 /* IWApertureAccess.applescript */; };
 		AE0E230C1A25DA42008353E6 /* README in Resources */ = {isa = PBXBuildFile; fileRef = AE0E230B1A25DA42008353E6 /* README */; };
 		AE0E230F1A2C40D4008353E6 /* IWView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0E230E1A2C40D4008353E6 /* IWView.m */; };
 		AE6CE97E1AE11935005DD31A /* IWDuplicateView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6CE97D1AE11935005DD31A /* IWDuplicateView.m */; };
@@ -42,7 +40,6 @@
 		AE0E22F41A2463BD008353E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE0E22F51A2463BD008353E6 /* WaterMarkerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterMarkerTests.m; sourceTree = "<group>"; };
 		AE0E22FF1A2463CF008353E6 /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = System/Library/Frameworks/AppleScriptObjC.framework; sourceTree = SDKROOT; };
-		AE0E23081A259EE9008353E6 /* IWApertureAccess.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = IWApertureAccess.applescript; sourceTree = "<group>"; };
 		AE0E230B1A25DA42008353E6 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = SOURCE_ROOT; };
 		AE0E230D1A2C40D4008353E6 /* IWView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWView.h; sourceTree = "<group>"; };
 		AE0E230E1A2C40D4008353E6 /* IWView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWView.m; sourceTree = "<group>"; };
@@ -95,7 +92,6 @@
 				AE0E22E21A2463BD008353E6 /* AppDelegate.m */,
 				AE0E230D1A2C40D4008353E6 /* IWView.h */,
 				AE0E230E1A2C40D4008353E6 /* IWView.m */,
-				AE0E23081A259EE9008353E6 /* IWApertureAccess.applescript */,
 				AE0E22E61A2463BD008353E6 /* Images.xcassets */,
 				AE0E22E81A2463BD008353E6 /* MainMenu.xib */,
 				AE6CE97C1AE11935005DD31A /* IWDuplicateView.h */,
@@ -193,6 +189,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -214,7 +211,6 @@
 			files = (
 				AE0E230C1A25DA42008353E6 /* README in Resources */,
 				AE0E22E71A2463BD008353E6 /* Images.xcassets in Resources */,
-				AE0E23091A259EE9008353E6 /* IWApertureAccess.applescript in Resources */,
 				AE0E22EA1A2463BD008353E6 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -233,7 +229,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE0E230A1A259F1E008353E6 /* IWApertureAccess.applescript in Sources */,
 				AE6CE97E1AE11935005DD31A /* IWDuplicateView.m in Sources */,
 				AE0E22E51A2463BD008353E6 /* main.m in Sources */,
 				AE0E230F1A2C40D4008353E6 /* IWView.m in Sources */,
@@ -352,9 +347,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = WaterMarker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -363,9 +360,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = WaterMarker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
