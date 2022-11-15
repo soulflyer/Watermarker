@@ -63,7 +63,7 @@
       imageRect.size.width=[self frame].size.width * [self widthPercent] / 100.0;
       imageRect.size.height=imageRect.size.width * [self watermarkImage].size.height / [self watermarkImage ].size.width;
       NSRect drawingRect=imageRect;
-      [[self watermarkImage] drawInRect:drawingRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:[self opacityPercent]/100.0];
+        [[self watermarkImage] drawInRect:drawingRect fromRect:NSZeroRect operation:NSCompositingOperationSourceOver fraction:[self opacityPercent]/100.0];
     }
   }
 }

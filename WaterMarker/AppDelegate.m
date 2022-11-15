@@ -66,39 +66,39 @@
   panel.canChooseDirectories = YES;
   panel.allowsMultipleSelection = YES;
   [panel beginWithCompletionHandler:^(NSInteger result) {
-    chosenDirectory = panel.URL;
-    chosenDirectoryArray = panel.URLs;
+      self->chosenDirectory = panel.URL;
+      self->chosenDirectoryArray = panel.URLs;
     
     
     // the application may now do something with chosenDirectory
-    NSLog(@"absoluteURL = %@",[chosenDirectory absoluteURL]);
-    filemgr = [NSFileManager defaultManager];
+      NSLog(@"absoluteURL = %@",[self->chosenDirectory absoluteURL]);
+      self->filemgr = [NSFileManager defaultManager];
 
-    NSURL *fileURL=chosenDirectoryArray[0];
+      NSURL *fileURL=self->chosenDirectoryArray[0];
     
     NSLog(@"file url: %@" ,fileURL);
-    attribs=[filemgr attributesOfItemAtPath: [fileURL path] error:NULL];
+      self->attribs=[self->filemgr attributesOfItemAtPath: [fileURL path] error:NULL];
     //ftype=[attribs objectForKey:NSFileType];
-    NSLog(@"attribs: %@", [attribs objectForKey:NSFileType]);
-    if ([attribs objectForKey:NSFileType]==NSFileTypeDirectory) {
+      NSLog(@"attribs: %@", [self->attribs objectForKey:NSFileType]);
+      if ([self->attribs objectForKey:NSFileType]==NSFileTypeDirectory) {
       NSLog(@"its a directory");
-      directoryImages=[filemgr contentsOfDirectoryAtURL:chosenDirectory includingPropertiesForKeys:nil options: NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+          self->directoryImages=[self->filemgr contentsOfDirectoryAtURL:self->chosenDirectory includingPropertiesForKeys:nil options: NSDirectoryEnumerationSkipsHiddenFiles error:nil];
     }
     else {
       NSLog(@"its a file");
-      directoryImages=[panel URLs];
+        self->directoryImages=[panel URLs];
     }
 
-    NSLog(@"directoryimages: %@", directoryImages);
-    NSImage *theImage = [[NSImage alloc] initWithContentsOfURL:directoryImages[0]];
-    NSLog(@"getWatermarkPosition returned: %@",[self getWatermarkPosition:directoryImages[0]]);
-    [theView setImage:theImage];
-    [theView initWatermarkValues:[self getWatermarkPosition:directoryImages[0]]];
-    [self setImageIndex:(int)[directoryImages count]];
+      NSLog(@"directoryimages: %@", self->directoryImages);
+      NSImage *theImage = [[NSImage alloc] initWithContentsOfURL:self->directoryImages[0]];
+      NSLog(@"getWatermarkPosition returned: %@",[self getWatermarkPosition:self->directoryImages[0]]);
+      [self->theView setImage:theImage];
+      [self->theView initWatermarkValues:[self getWatermarkPosition:self->directoryImages[0]]];
+      [self setImageIndex:(int)[self->directoryImages count]];
     [self setImageCount:@""];
     [self setImageIndex:0];
-    [theView setToolsVisible:true];
-    [[theView window] performZoom:self];
+      [self->theView setToolsVisible:true];
+      [[self->theView window] performZoom:self];
     }];
 }
 
@@ -124,8 +124,8 @@
     NSImage *theImage = [[NSImage alloc] initWithContentsOfURL:directoryImages[imageIndex]];
     [theView setImage:theImage];
     [theView initWatermarkValues:[self getWatermarkPosition:directoryImages[imageIndex]]];
-    [theView setNeedsDisplay:true];
     [[theView window] performZoom:self];
+    [theView setNeedsDisplay:true];
   }
 }
 

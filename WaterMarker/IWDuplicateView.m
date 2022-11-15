@@ -21,7 +21,7 @@
     drawInRect.size.height = 500 * imageRect.size.height / imageRect.size.width;
     [image drawInRect:drawInRect
              fromRect:imageRect
-            operation:NSCompositeSourceOver
+            operation:NSCompositingOperationSourceOver
              fraction:1];
   }
 }
