@@ -1,6 +1,8 @@
 #!/bin/bash
 
-EXIFTOOL="/usr/local/bin/exiftool"
+# EXIFTOOL="/opt/homebrew/bin/exiftool"
+EXIFTOOL=`which exiftool`
+COMPOSITE=`which composite`
 
 for i in $*
 do
@@ -92,7 +94,7 @@ do
 
     # echo "Res: " $RES
 
-    COMMAND="/usr/local/bin/composite -dissolve $OPACITY -gravity $CORNER -geometry ${WIDTH}x$HEIGHT+$XOFFSET+$YOFFSET $WATERMARKFILE $i $i"
+    COMMAND="$COMPOSITE -dissolve $OPACITY -gravity $CORNER -geometry ${WIDTH}x$HEIGHT+$XOFFSET+$YOFFSET $WATERMARKFILE $i $i"
 
     # echo $COMMAND
     $COMMAND
